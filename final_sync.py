@@ -1,13 +1,5 @@
 import os
 
-# Global style for dropdowns
-with open('E:/3d/style.css', 'r', encoding='utf-8') as f:
-    css = f.read()
-if 'select option' not in css:
-    css += "\\nselect option { background: #05000f !important; color: #fff !important; }\\n"
-with open('E:/3d/style.css', 'w', encoding='utf-8') as f:
-    f.write(css)
-
 # Sync contact form and footer across all pages
 files = ['index.html', 'about.html', 'technology.html', 'our-work.html', 'reviews.html', 'contact.html']
 
