@@ -445,3 +445,42 @@ if (backToTopBtn) {
         });
     });
 }
+
+// ── AJAX Contact Form Submission ──────────────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contact-form');
+    if (!form) return;
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const btn = document.getElementById('contact-submit-btn');
+        const successBox = document.getElementById('form-success');
+
+        // Show loading state
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin" style="margin-right:8px;"></i>Sending...';
+
+        try {
+            const data = new FormData(form);
+            const response = await fetch('https://formspree.io/f/meevwdbq', {
+                method: 'POST',
+                body: data,
+                headers: { 'Accept': 'application/json' }
+            });
+
+            if (response.ok) {
+                // Hide form, show success message
+                form.style.display = 'none';
+                successBox.style.display = 'block';
+            } else {
+                throw new Error('Server error');
+            }
+        } catch (err) {
+            // Reset button on error
+            btn.disabled = false;
+            btn.innerHTML = 'Send Inquiry';
+            alert('Something went wrong. Please try again or email us directly.');
+        }
+    });
+});

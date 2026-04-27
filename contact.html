@@ -108,7 +108,7 @@
                 </div>
                 <div class="contact-layout">
                     <div class="contact-form glass reveal">
-                        <form action="https://formspree.io/f/meevwdbq" method="POST">
+                        <form id="contact-form" action="https://formspree.io/f/meevwdbq" method="POST">
                             <div class="form-group">
                                 <label>Name</label>
                                 <input type="text" name="name" placeholder="Your Full Name" required>
@@ -131,8 +131,14 @@
                                 <label>Message</label>
                                 <textarea name="message" rows="6" placeholder="Describe your project, goals, and any specific requirements" required></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 1.2rem; font-weight: 700; letter-spacing: 1px;">Send Inquiry</button>
+                            <button type="submit" id="contact-submit-btn" class="btn btn-primary" style="width: 100%; padding: 1.2rem; font-weight: 700; letter-spacing: 1px;">Send Inquiry</button>
                         </form>
+                        <div id="form-success" style="display:none; text-align:center; padding: 3rem 2rem;">
+                            <div style="font-size: 4rem; margin-bottom: 1rem;">✅</div>
+                            <h3 style="color: #4ade80; font-size: 1.5rem; margin-bottom: 0.8rem;">Message Sent Successfully!</h3>
+                            <p style="color: rgba(255,255,255,0.6);">Thank you! We'll get back to you within 24 hours.</p>
+                            <button onclick="document.getElementById('form-success').style.display='none'; document.getElementById('contact-form').style.display='block'; document.getElementById('contact-form').reset();" class="btn btn-outline" style="margin-top: 2rem;">Send Another</button>
+                        </div>
                     </div>
                     <div class="contact-info">
                         <div class="info-item glass reveal">
