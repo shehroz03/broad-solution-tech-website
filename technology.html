@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technologies | Broad Solution Tech</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.birds.min.js"></script>
+    
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg: #05000f;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-b: rgba(255, 255, 255, 0.07);
+            --text: rgba(255, 255, 255, 0.88);
+            --muted: rgba(255, 255, 255, 0.4);
+            --ff-d: 'Syne', sans-serif;
+            --ff-m: 'Space Mono', monospace;
+            --ff-b: 'DM Sans', sans-serif;
+            --cursor-color: #c084fc;
+        }
+
+        html { scroll-behavior: smooth; }
+        body { background: var(--bg); color: var(--text); font-family: var(--ff-b); overflow-x: hidden; cursor: none; }
+
+        /* Vanta Background integration */
+        #vanta-canvas { position: fixed; inset: 0; z-index: -1; }
+
+        /* Cursor Styles */
+        .cursor-dot,
+        .cursor-outline {
+            pointer-events: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        .cursor-dot {
+            width: 12px;
+            height: 12px;
+            background-color: var(--cursor-color) !important;
+            box-shadow: 0 0 10px var(--cursor-color);
+        }
+
+        .cursor-outline {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--cursor-color) !important;
+        }
+
+        /* NAVBAR */
+        a { text-decoration: none; color: inherit; }
+        #navbar { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; background: rgba(5, 0, 15, 0.95); border-bottom: 1px solid rgba(139, 92, 246, 0.2); padding: 1rem 0; transition: all 0.3s ease; }
+        #navbar .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 1rem; font-size: 1.5rem; font-weight: 800; color: white; cursor: none; }
+        .logo-icon { width: 32px; height: 32px; background: #6B2FD9; border-radius: 6px; display: flex; align-items: center; justify-content: center; }
+        .nav-links { display: flex; gap: 2.5rem; }
+        .nav-links a { color: rgba(255, 255, 255, 0.6); font-size: 0.9rem; font-weight: 500; transition: color 0.3s; cursor: none; }
+        .nav-links a:hover, .nav-links a.active { color: #8B5CF6; position: relative; }
+        .nav-links a.active::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 100%; height: 2px; background: #8B5CF6; box-shadow: 0 0 10px #8B5CF6; }
+
+        /* Navigation Dots & Progress */
+        #pf { position: fixed; top: 0; left: 0; height: 2px; background: var(--cursor-color); z-index: 2000; width: 0%; transition: width 0.1s, background 0.3s; box-shadow: 0 0 10px var(--cursor-color); }
+        .snav { position: fixed; right: 24px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 16px; z-index: 100; }
+        .sd { width: 8px; height: 8px; border-radius: 50%; background: transparent; border: 1px solid rgba(255,255,255,0.2); cursor: none; position: relative; transition: all 0.3s; }
+        .sd::before { content: attr(data-l); position: absolute; right: 20px; top: 50%; transform: translateY(-50%); font-family: var(--ff-m); font-size: 10px; opacity: 0; color: rgba(255,255,255,0.5); text-transform: uppercase; white-space: nowrap; pointer-events: none; transition: opacity 0.2s; letter-spacing: 1px; }
+        .sd:hover::before { opacity: 1; color: var(--text); }
+        .sd.on { background: var(--c); border-color: var(--c); box-shadow: 0 0 12px var(--c); transform: scale(1.4); }
+
+        /* Layout & Common */
+        .sec { padding: 140px 0; display: flex; flex-direction: column; align-items: center; position: relative; z-index: 1; }
+        .cont { max-width: 1100px; width: 90%; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 8vw; align-items: center; }
+
+        /* Buttons */
+        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 0.8rem 1.6rem; border-radius: 8px; font-weight: 600; cursor: none !important; transition: all 0.3s; font-size: 0.95rem; font-family: var(--ff-b); }
+        .btn-primary { background: #6B2FD9; color: white; border: none; }
+        .btn-primary:hover { background: #8B5CF6; box-shadow: 0 0 15px #6B2FD9; transform: translateY(-2px); }
+        .btn-outline { background: transparent; color: white; border: 1px solid rgba(255, 255, 255, 0.3); }
+        .btn-outline:hover { background: rgba(255, 255, 255, 0.1); transform: translateY(-2px); border-color: rgba(255,255,255,0.5); }
+
+        /* Hero */
+        .hero { min-height: 100vh; padding-top: 100px; justify-content: center; text-align: center; }
+        .hh { font-family: var(--ff-d); font-size: clamp(40px, 6vw, 76px); font-weight: 800; line-height: 1.1; letter-spacing: -2px; margin-bottom: 24px; color: #fff; }
+        .hs { font-size: clamp(16px, 1.8vw, 18px); color: var(--muted); max-width: 540px; line-height: 1.6; margin-bottom: 40px; }
+        .hero-btns { display: flex; gap: 16px; justify-content: center; }
+
+        /* SVG Brackets */
+        .brk { position: absolute; width: 40px; height: 40px; pointer-events: none; opacity: 0.3; stroke: var(--c); fill: none; stroke-width: 1px; }
+        .brk.tl { top: 40px; left: 40px; }
+        .brk.tr { top: 40px; right: 40px; transform: scaleX(-1); }
+        .brk.bl { bottom: 40px; left: 40px; transform: scaleY(-1); }
+        .brk.br { bottom: 40px; right: 40px; transform: scale(-1, -1); }
+
+        /* Orbits */
+        .oc { position: relative; width: 100%; display: flex; align-items: center; justify-content: center; padding: 2rem 0; }
+        .os { position: relative; width: clamp(260px, 35vw, 400px); aspect-ratio: 1; }
+        .oh { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 86px; height: 86px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: radial-gradient(circle at center, rgba(255,255,255,0.1), transparent); border: 1px solid var(--c); box-shadow: 0 0 30px inset rgba(255,255,255,0.05); }
+        .oh i { font-size: 26px; margin-bottom: 4px; font-style: normal; }
+        .oh span { font-family: var(--ff-m); font-size: 9px; font-weight: 700; color: var(--c); text-transform: uppercase; letter-spacing: 1px; }
+
+        .or1, .or2 { position: absolute; top: 0; left: 0; width: 100%; height: 100%; fill: none; stroke: var(--c); opacity: 0.3; transform-origin: center; pointer-events: none; }
+        .or1 { stroke-width: 1px; stroke-dasharray: 6 12; animation: rot1 22s linear infinite; }
+        .or2 { stroke-width: 0.5px; stroke-dasharray: 4 8; animation: rot2 16s linear infinite reverse; }
+        @keyframes rot1 { to { transform: rotate(360deg); } }
+        @keyframes rot2 { to { transform: rotate(360deg); } }
+
+        .ois { position: absolute; inset: 0; pointer-events: none; }
+        .ob { position: absolute; width: 48px; height: 48px; border-radius: 50%; background: var(--glass); border: 1px solid var(--glass-b); display: flex; align-items: center; justify-content: center; backdrop-filter: blur(8px); box-shadow: 0 4px 16px rgba(0,0,0,0.3); transition: transform 0.3s, border-color 0.3s; will-change: left, top; pointer-events: auto; cursor: none; }
+        .ob i { font-size: 20px; font-style: normal; }
+        .ob:hover { transform: scale(1.15) translateY(-2px); border-color: var(--c); box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+        .ob::after { content: attr(data-t); position: absolute; top: -26px; font-family: var(--ff-m); font-size: 10px; color: #fff; white-space: nowrap; opacity: 0; transition: 0.3s; background: rgba(0,0,0,0.8); padding: 4px 8px; border-radius: 4px; pointer-events: none; border: 1px solid var(--glass-b); }
+        .ob:hover::after { opacity: 1; top: -32px; }
+
+        /* Text Area */
+        .tc { display: flex; flex-direction: column; }
+        .te { font-family: var(--ff-m); font-size: 11px; color: var(--c); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 14px; }
+        .te::before { content: ''; width: 40px; height: 1px; background: var(--c); opacity: 0.5; }
+        .tt { font-family: var(--ff-d); font-size: clamp(28px, 4vw, 46px); font-weight: 700; line-height: 1.1; margin-bottom: 20px; color: #fff; }
+        .td { color: var(--muted); font-size: clamp(15px, 1.3vw, 17px); line-height: 1.7; margin-bottom: 36px; }
+
+        .tps { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 40px; }
+        .tp { font-family: var(--ff-m); font-size: 11px; padding: 8px 16px; background: var(--glass); border: 1px solid var(--glass-b); border-radius: 24px; color: rgba(255,255,255,0.7); display: flex; align-items: center; gap: 8px; transition: 0.3s; cursor: none; }
+        .tp::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--c); opacity: 0.6; transition: 0.3s; }
+        .tp:hover { background: rgba(255,255,255,0.08); color: #fff; transform: translateY(-2px); border-color: rgba(255,255,255,0.2); }
+        .tp:hover::before { opacity: 1; box-shadow: 0 0 10px var(--c); }
+
+        .fl { display: flex; flex-direction: column; gap: 14px; }
+        .fi { display: flex; align-items: center; gap: 16px; padding: 16px 20px; background: var(--glass); border: 1px solid var(--glass-b); border-radius: 8px; font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.85); transition: 0.3s; border-left: 3px solid transparent; cursor: none; }
+        .fi:hover { background: rgba(255,255,255,0.05); transform: translateX(6px); border-left-color: var(--c); border-right-color: rgba(255,255,255,0.1); }
+        .fic { font-size: 18px; font-style: normal; }
+
+        /* Stats */
+        .imp { width: 100%; padding: 120px 0; border-top: 1px solid var(--glass-b); margin-top: 40px; background: linear-gradient(180deg, transparent, rgba(5,0,15,0.8)); }
+        .ih { text-align: center; margin-bottom: 60px; }
+        .ie { font-family: var(--ff-m); font-size: 13px; color: var(--c); letter-spacing: 4px; text-transform: uppercase; margin-bottom: 16px; }
+        .ig { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; max-width: 1100px; width: 90%; margin: 0 auto; }
+        .ic { background: var(--glass); border: 1px solid var(--glass-b); border-radius: 16px; padding: 40px 24px; text-align: center; transition: 0.4s; }
+        .ic:hover { transform: translateY(-6px); background: rgba(255,255,255,0.06); border-color: var(--c); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        .ic-n { font-family: var(--ff-d); font-size: 56px; font-weight: 800; color: #fff; margin-bottom: 10px; display: block; line-height: 1; }
+        .ic-l { font-family: var(--ff-m); font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 2px; }
+
+        @media (max-width: 900px) {
+            .cont { grid-template-columns: 1fr; gap: 60px; }
+            .cont.rev .oc { grid-row: 1; }
+            .snav { display: none; }
+            .hh { font-size: 40px; }
+            .sec { padding: 80px 0; }
+        }
+    </style>
+</head>
+<body>
+    <div id="vanta-canvas"></div>
+    <div id="pf"></div>
+
+    <!-- NAVBAR -->
+    <nav id="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><i class="fas fa-cube"></i></div>
+                BST
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="technology.html" class="active">Technology</a>
+                <a href="our-work.html">Our Work</a>
+                <a href="reviews.html">Reviews</a>
+                <a href="about.html">About Founder</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SIDE NAVIGATION -->
+    <div class="snav">
+        <div class="sd on" data-l="Hero" data-i="0" style="--c:#c084fc"></div>
+        <div class="sd" data-l="Frontend" data-i="1" style="--c:#22d3ee"></div>
+        <div class="sd" data-l="Backend" data-i="2" style="--c:#4ade80"></div>
+        <div class="sd" data-l="Database" data-i="3" style="--c:#fb923c"></div>
+        <div class="sd" data-l="Mobile/AI" data-i="4" style="--c:#a78bfa"></div>
+        <div class="sd" data-l="Security" data-i="5" style="--c:#f43f5e"></div>
+    </div>
+
+    <!-- 0. HERO -->
+    <div class="sec hero" id="s0" style="--c:#c084fc">
+        <h1 class="hh">Technologies We Master</h1>
+        <p class="hs">A curated arsenal of modern tools — built for scale, engineered for high-throughput production environments, and crafted for excellence.</p>
+        <div class="hero-btns">
+            <button class="btn btn-primary" onclick="document.getElementById('s1').scrollIntoView()">Explore Stack</button>
+            <a href="our-work.html" class="btn btn-outline">Our Work</a>
+        </div>
+    </div>
+
+    <!-- 1. FRONTEND -->
+    <div class="sec" id="s1" style="--c:#22d3ee">
+        <svg class="brk tl" viewBox="0 0 40 40"><path d="M0 40V0h40M0 0v40"/></svg>
+        <svg class="brk br" viewBox="0 0 40 40"><path d="M40 0v40H0M40 40V0"/></svg>
+        <div class="cont">
+            <div class="oc">
+                <div class="os">
+                    <svg class="or1"><circle cx="50%" cy="50%" r="48%"/></svg>
+                    <svg class="or2"><circle cx="50%" cy="50%" r="35%"/></svg>
+                    <div class="oh"><i>💻</i><span>Front</span></div>
+                    <div class="ois" id="ois-s1"></div>
+                </div>
+            </div>
+            <div class="tc">
+                <div class="te">Frontend Category</div>
+                <h2 class="tt">Frontend Engineering</h2>
+                <p class="td">Pixel-perfect interfaces powered by the modern JavaScript ecosystem — fast, accessible, and visually stunning interactive web experiences.</p>
+                <div class="tps">
+                    <div class="tp">React 18</div>
+                    <div class="tp">Next.js 14</div>
+                    <div class="tp">TypeScript</div>
+                    <div class="tp">Framer Motion</div>
+                </div>
+                <div class="fl">
+                    <div class="fi"><i class="fic">⚡</i>Blazing-fast SSR &amp; SSG</div>
+                    <div class="fi"><i class="fic">🎨</i>Tailwind Utility Styling</div>
+                    <div class="fi"><i class="fic">♿</i>WCAG 2.1 Accessibility</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. BACKEND -->
+    <div class="sec" id="s2" style="--c:#4ade80">
+        <svg class="brk tr" viewBox="0 0 40 40"><path d="M40 40V0H0M40 0v40"/></svg>
+        <svg class="brk bl" viewBox="0 0 40 40"><path d="M0 0v40h40M0 40V0"/></svg>
+        <div class="cont rev">
+            <div class="tc">
+                <div class="te">Backend Category</div>
+                <h2 class="tt">Backend Systems</h2>
+                <p class="td">Scalable server architecture and robust APIs engineered specifically to handle high-throughput production environments without sweat.</p>
+                <div class="tps">
+                    <div class="tp">Node.js</div>
+                    <div class="tp">Python</div>
+                    <div class="tp">FastAPI</div>
+                    <div class="tp">Express</div>
+                </div>
+                <div class="fl">
+                    <div class="fi"><i class="fic">🔌</i>RESTful &amp; GraphQL APIs</div>
+                    <div class="fi"><i class="fic">🔄</i>Microservices Architecture</div>
+                    <div class="fi"><i class="fic">📈</i>Auto-scaling Infrastructure</div>
+                </div>
+            </div>
+            <div class="oc">
+                <div class="os">
+                    <svg class="or1"><circle cx="50%" cy="50%" r="48%"/></svg>
+                    <svg class="or2"><circle cx="50%" cy="50%" r="35%"/></svg>
+                    <div class="oh"><i>⚙️</i><span>Back</span></div>
+                    <div class="ois" id="ois-s2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. DATABASE -->
+    <div class="sec" id="s3" style="--c:#fb923c">
+        <svg class="brk tl" viewBox="0 0 40 40"><path d="M0 40V0h40M0 0v40"/></svg>
+        <svg class="brk br" viewBox="0 0 40 40"><path d="M40 0v40H0M40 40V0"/></svg>
+        <div class="cont">
+            <div class="oc">
+                <div class="os">
+                    <svg class="or1"><circle cx="50%" cy="50%" r="48%"/></svg>
+                    <svg class="or2"><circle cx="50%" cy="50%" r="35%"/></svg>
+                    <div class="oh"><i>🗄️</i><span>Data</span></div>
+                    <div class="ois" id="ois-s3"></div>
+                </div>
+            </div>
+            <div class="tc">
+                <div class="te">Database Category</div>
+                <h2 class="tt">Data &amp; Cloud Layer</h2>
+                <p class="td">Resilient data infrastructure spanning from lightning-fast real-time NoSQL document stores to battle-tested relational powerhouses.</p>
+                <div class="tps">
+                    <div class="tp">Supabase</div>
+                    <div class="tp">Firebase</div>
+                    <div class="tp">MongoDB</div>
+                    <div class="tp">PostgreSQL</div>
+                </div>
+                <div class="fl">
+                    <div class="fi"><i class="fic">⚡</i>Real-time Sync &amp; PubSub</div>
+                    <div class="fi"><i class="fic">🛡️</i>Row-Level Security (RLS)</div>
+                    <div class="fi"><i class="fic">☁️</i>Multi-cloud Deployment</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. MOBILE & AI -->
+    <div class="sec" id="s4" style="--c:#a78bfa">
+        <svg class="brk tr" viewBox="0 0 40 40"><path d="M40 40V0H0M40 0v40"/></svg>
+        <svg class="brk bl" viewBox="0 0 40 40"><path d="M0 0v40h40M0 40V0"/></svg>
+        <div class="cont rev">
+            <div class="tc">
+                <div class="te">Innovation Category</div>
+                <h2 class="tt">Mobile &amp; AI</h2>
+                <p class="td">From native-feel cross-platform apps to intelligent AI integrations — we ship products that actively think, learn, and feel alive.</p>
+                <div class="tps">
+                    <div class="tp">React Native</div>
+                    <div class="tp">Flutter</div>
+                    <div class="tp">OpenAI</div>
+                    <div class="tp">LangChain</div>
+                </div>
+                <div class="fl">
+                    <div class="fi"><i class="fic">📱</i>iOS &amp; Android — one codebase</div>
+                    <div class="fi"><i class="fic">🤖</i>LLM-powered autonomous agents</div>
+                    <div class="fi"><i class="fic">🧠</i>RAG pipelines &amp; vector search</div>
+                </div>
+            </div>
+            <div class="oc">
+                <div class="os">
+                    <svg class="or1"><circle cx="50%" cy="50%" r="48%"/></svg>
+                    <svg class="or2"><circle cx="50%" cy="50%" r="35%"/></svg>
+                    <div class="oh"><i>🤖</i><span>Mobile/AI</span></div>
+                    <div class="ois" id="ois-s4"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. SECURITY -->
+    <div class="sec" id="s5" style="--c:#f43f5e">
+        <svg class="brk tl" viewBox="0 0 40 40"><path d="M0 40V0h40M0 0v40"/></svg>
+        <svg class="brk br" viewBox="0 0 40 40"><path d="M40 0v40H0M40 40V0"/></svg>
+        <div class="cont">
+            <div class="oc">
+                <div class="os">
+                    <svg class="or1"><circle cx="50%" cy="50%" r="48%"/></svg>
+                    <svg class="or2"><circle cx="50%" cy="50%" r="35%"/></svg>
+                    <div class="oh"><i>🛡️</i><span>Secure</span></div>
+                    <div class="ois" id="ois-s5"></div>
+                </div>
+            </div>
+            <div class="tc">
+                <div class="te">Protection Category</div>
+                <h2 class="tt">Cybersecurity</h2>
+                <p class="td">Defense-grade security embedded deeply at every layer — from proactive pen testing to live threat intelligence and zero-trust models.</p>
+                <div class="tps">
+                    <div class="tp">Net Security</div>
+                    <div class="tp">Pen Testing</div>
+                    <div class="tp">VAPT</div>
+                    <div class="tp">Cyber Defense</div>
+                </div>
+                <div class="fl">
+                    <div class="fi"><i class="fic">🔍</i>Vulnerability Assessment</div>
+                    <div class="fi"><i class="fic">🔐</i>Zero-Trust Architecture</div>
+                    <div class="fi"><i class="fic">📊</i>Real-time Threat Monitoring</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="sec imp" style="--c:#c084fc">
+        <div class="ih">
+            <div class="ie">Studio Impact</div>
+            <h2 class="tt">Numbers That Speak</h2>
+        </div>
+        <div class="ig">
+            <div class="ic">
+                <span class="ic-n" data-t="25" data-s="+">0</span>
+                <span class="ic-l">Technologies Mastered</span>
+            </div>
+            <div class="ic">
+                <span class="ic-n" data-t="100" data-s="+">0</span>
+                <span class="ic-l">Projects Delivered</span>
+            </div>
+            <div class="ic">
+                <span class="ic-n" data-t="50" data-s="+">0</span>
+                <span class="ic-l">Global Clients</span>
+            </div>
+            <div class="ic">
+                <span class="ic-n" data-t="5" data-s="">0</span>
+                <span class="ic-l">Core Domains</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Cursor DOM (controlled by main.js) -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <script>
+        // ORBIT BUBBLES LOGIC
+        const orbs = {
+            s1: [
+                {e:'⚛️', t:'React', a:0, s: 0.005, r: 48},
+                {e:'▲', t:'Next.js', a:180, s: 0.005, r: 48},
+                {e:'TS', t:'TypeScript', a:90, s: -0.006, r: 35},
+                {e:'✨', t:'Motion', a:270, s: -0.006, r: 35}
+            ],
+            s2: [
+                {e:'🟢', t:'Node.js', a:45, s: 0.004, r: 48},
+                {e:'🐍', t:'Python', a:225, s: 0.004, r: 48},
+                {e:'🚀', t:'FastAPI', a:135, s: -0.005, r: 35},
+                {e:'🚂', t:'Express', a:315, s: -0.005, r: 35}
+            ],
+            s3: [
+                {e:'🔥', t:'Firebase', a:20, s: 0.005, r: 48},
+                {e:'🍃', t:'MongoDB', a:200, s: 0.005, r: 48},
+                {e:'⚡', t:'Supabase', a:110, s: -0.007, r: 35},
+                {e:'🐘', t:'Postgres', a:290, s: -0.007, r: 35}
+            ],
+            s4: [
+                {e:'📱', t:'React Native', a:60, s: 0.006, r: 48},
+                {e:'🐦', t:'Flutter', a:240, s: 0.006, r: 48},
+                {e:'🤖', t:'OpenAI', a:150, s: -0.005, r: 35},
+                {e:'🔗', t:'LangChain', a:330, s: -0.005, r: 35}
+            ],
+            s5: [
+                {e:'🛡️', t:'VAPT', a:10, s: 0.004, r: 48},
+                {e:'🔐', t:'Zero-Trust', a:190, s: 0.004, r: 48},
+                {e:'🔍', t:'Pen Testing', a:100, s: -0.006, r: 35},
+                {e:'🌐', t:'NetSec', a:280, s: -0.006, r: 35}
+            ]
+        };
+
+        Object.keys(orbs).forEach(id => {
+            const container = document.getElementById('ois-' + id);
+            if (!container) return;
+            orbs[id].forEach(o => {
+                const b = document.createElement('div');
+                b.className = 'ob';
+                b.dataset.t = o.t;
+                b.innerHTML = `<i>${o.e}</i>`;
+                container.appendChild(b);
+                o.el = b;
+            });
+        });
+
+        function animateOrbits() {
+            const t = Date.now();
+            Object.keys(orbs).forEach(id => {
+                orbs[id].forEach(o => {
+                    const ang = (o.a + t * o.s) * Math.PI / 180;
+                    const x = 50 + o.r * Math.cos(ang);
+                    const y = 50 + o.r * Math.sin(ang);
+                    o.el.style.left = `calc(${x}% - 24px)`;
+                    o.el.style.top = `calc(${y}% - 24px)`;
+                });
+            });
+            requestAnimationFrame(animateOrbits);
+        }
+        animateOrbits();
+
+        // SCROLL LOGIC
+        const secs = document.querySelectorAll('.sec:not(.imp)');
+        const dots = document.querySelectorAll('.sd');
+        const pf = document.getElementById('pf');
+
+        window.addEventListener('scroll', () => {
+            // Progress Bar
+            const t = document.documentElement.scrollHeight - window.innerHeight;
+            pf.style.width = t > 0 ? (window.scrollY / t) * 100 + '%' : '0%';
+
+            // Active Dot & Cursor Color
+            let current = 0;
+            secs.forEach((s, i) => {
+                if (window.scrollY >= s.offsetTop - window.innerHeight * 0.4) {
+                    current = i;
+                }
+            });
+            
+            dots.forEach((d, i) => d.classList.toggle('on', i === current));
+            
+            if (dots[current]) {
+                const c = dots[current].style.getPropertyValue('--c');
+                document.documentElement.style.setProperty('--cursor-color', c);
+            }
+        }, { passive: true });
+
+        // Dot Navigation
+        dots.forEach(d => {
+            d.addEventListener('click', () => {
+                secs[d.dataset.i].scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // STATS COUNTER
+        const statCards = document.querySelectorAll('.ic-n');
+        let statsStarted = false;
+        const statsSec = document.querySelector('.imp');
+        window.addEventListener('scroll', () => {
+            if (!statsStarted && statsSec.getBoundingClientRect().top < window.innerHeight * 0.8) {
+                statsStarted = true;
+                statCards.forEach(el => {
+                    const target = parseInt(el.dataset.t);
+                    const suffix = el.dataset.s || '';
+                    let cur = 0;
+                    const int = setInterval(() => {
+                        cur += Math.max(1, Math.ceil(target / 40));
+                        if (cur >= target) {
+                            cur = target;
+                            clearInterval(int);
+                        }
+                        el.innerText = cur + suffix;
+                    }, 35);
+                });
+            }
+        });
+    </script>
+    
+    <!-- Link to the main site scripts for Vanta Background -->
+    <script type="module" src="./main.js"></script>
+</body>
+</html>
