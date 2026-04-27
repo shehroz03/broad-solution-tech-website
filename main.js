@@ -484,3 +484,56 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+// Robust AJAX Form Handler
+function initContactForm() {
+    const form = document.getElementById('contact-form');
+    if (!form) return;
+
+    // Remove existing listeners to prevent duplicates
+    const newForm = form.cloneNode(true);
+    form.parentNode.replaceChild(newForm, form);
+
+    newForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const btn = document.getElementById('contact-submit-btn');
+        const successBox = document.getElementById('form-success');
+        
+        if (!btn || !successBox) return;
+
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+
+        try {
+            const formData = new FormData(newForm);
+            const response = await fetch(newForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                newForm.style.display = 'none';
+                successBox.style.display = 'block';
+                successBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                const data = await response.json();
+                throw new Error(data.error || 'Submission failed');
+            }
+        } catch (error) {
+            btn.disabled = false;
+            btn.innerHTML = 'Send Inquiry';
+            alert('Oops! ' + error.message);
+        }
+    });
+}
+
+// Initialize on load and also on scroll reveal if needed
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initContactForm);
+} else {
+    initContactForm();
+}
