@@ -2432,4 +2432,8 @@ footer {
 .rack-conn-line::after{content:'';position:absolute;bottom:-4px;left:50%;transform:translateX(-50%);width:8px;height:8px;border-radius:50%;background:#06b6d4;opacity:.5;animation:ledBlink 2s ease-in-out infinite}
 s e l e c t   o p t i o n   {   b a c k g r o u n d :   # 0 5 0 0 0 f   ! i m p o r t a n t ;   c o l o r :   # f f f   ! i m p o r t a n t ;   } 
  
- \nselect option { background: #05000f !important; color: #fff !important; }\n
+
+select option { 
+    background: #05000f !important; 
+    color: #fff !important; 
+}
