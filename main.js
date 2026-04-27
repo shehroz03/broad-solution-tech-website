@@ -347,19 +347,10 @@ if (track) {
 }
 
 
-// Logo Toggle
+// Logo Text - Keep as BST
 const logoText = document.getElementById('dynamic-logo-text');
 if (logoText) {
-    const names = ["BST", "Broad Solution Tech"];
-    let currentNameIndex = 0;
-    setInterval(() => {
-        logoText.style.opacity = '0';
-        setTimeout(() => {
-            currentNameIndex = (currentNameIndex + 1) % names.length;
-            logoText.textContent = names[currentNameIndex];
-            logoText.style.opacity = '1';
-        }, 500);
-    }, 5000);
+    logoText.textContent = "BST";
 }
 
 if (typeof updateCursorListeners === 'function') updateCursorListeners();
