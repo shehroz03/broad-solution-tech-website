@@ -1,27 +1,53 @@
 // Initialize Vanta.js Birds
 window.addEventListener('DOMContentLoaded', () => {
-    VANTA.BIRDS({
-        el: "#vanta-canvas",
-        mouseControls: true,
-        touchControls: true,
-        gyroControls: false,
-        minHeight: 200.00,
-        minWidth: 200.00,
-        scale: 1.00,
-        scaleMobile: 1.00,
-        mouseControls: false,
-        touchControls: false,
-        backgroundColor: 0x05000f,
-        color1: 0x6b2fd9,
-        color2: 0x8b5cf6,
-        birdSize: 1.20, /* Slightly smaller birds for better look */
-        wingSpan: 15.00,
-        speedLimit: 4.00,
-        quantity: 3.00, /* Reduced bird quantity slightly for better performance */
-        separation: 50.00,
-        alignment: 50.00,
-        cohesion: 50.00
-    });
+    if (typeof VANTA !== 'undefined' && VANTA.BIRDS) {
+        VANTA.BIRDS({
+            el: "#vanta-canvas",
+            mouseControls: false,
+            touchControls: false,
+            gyroControls: false,
+            minHeight: 200.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            backgroundColor: 0x05000f,
+            color1: 0x6b2fd9,
+            color2: 0x8b5cf6,
+            birdSize: 1.20,
+            wingSpan: 15.00,
+            speedLimit: 4.00,
+            quantity: 3.00,
+            separation: 50.00,
+            alignment: 50.00,
+            cohesion: 50.00
+        });
+    } else {
+        console.warn("Vanta.js Birds not loaded yet. Retrying...");
+        setTimeout(() => {
+            if (typeof VANTA !== 'undefined' && VANTA.BIRDS) {
+                VANTA.BIRDS({
+                    el: "#vanta-canvas",
+                    mouseControls: false,
+                    touchControls: false,
+                    gyroControls: false,
+                    minHeight: 200.00,
+                    minWidth: 200.00,
+                    scale: 1.00,
+                    scaleMobile: 1.00,
+                    backgroundColor: 0x05000f,
+                    color1: 0x6b2fd9,
+                    color2: 0x8b5cf6,
+                    birdSize: 1.20,
+                    wingSpan: 15.00,
+                    speedLimit: 4.00,
+                    quantity: 3.00,
+                    separation: 50.00,
+                    alignment: 50.00,
+                    cohesion: 50.00
+                });
+            }
+        }, 1000);
+    }
 });
 
 // Optimized Scroll Handler
