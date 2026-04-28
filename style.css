@@ -246,3 +246,37 @@ input::placeholder, textarea::placeholder {
         gap: 3rem;
     }
 }
+/* Footer Email Link Styling */
+.footer-email-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-top: 1rem;
+    padding: 0.6rem 1.2rem;
+    background: rgba(139, 92, 246, 0.1);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 100px;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    text-decoration: none;
+}
+
+.footer-email-link i {
+    color: var(--accent-secondary);
+    font-size: 1.1rem;
+    transition: transform 0.4s;
+}
+
+.footer-email-link:hover {
+    background: var(--accent-primary);
+    border-color: var(--accent-primary);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(107, 47, 217, 0.3);
+    color: #fff;
+}
+
+.footer-email-link:hover i {
+    transform: rotate(15deg) scale(1.2);
+    color: #fff;
+}

@@ -42,8 +42,8 @@ contact_html_template = """
                     <div class="contact-info">
                         <div class="info-item glass reveal">
                             <h4 style="color: #8b5cf6; margin-bottom: 0.8rem;">Direct Email</h4>
-                            <p>hello@broadsolutiontech.com</p>
-                            <a href="mailto:hello@broadsolutiontech.com" style="color: #a78bfa; font-weight: 700; text-decoration: none; display: inline-block; margin-top: 1rem;">Email Us →</a>
+                            <p>info@broadsolutiontech.com</p>
+                            <a href="mailto:info@broadsolutiontech.com" style="color: #a78bfa; font-weight: 700; text-decoration: none; display: inline-block; margin-top: 1rem;">Email Us →</a>
                         </div>
                         <div class="info-item glass reveal">
                             <h4 style="color: #8b5cf6; margin-bottom: 0.8rem;">WhatsApp</h4>

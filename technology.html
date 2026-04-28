@@ -8,8 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    
-    
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         :root {
@@ -153,6 +151,52 @@
             .snav { display: none; }
             .hh { font-size: 40px; }
             .sec { padding: 80px 0; }
+        }
+
+        /* Footer Styling */
+        footer { border-top: 1px solid var(--glass-b); padding: 5rem 0 2rem; margin-top: 4rem; position: relative; z-index: 10; background: rgba(5, 0, 15, 0.9); }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; margin-bottom: 4rem; max-width: 1100px; margin-left: auto; margin-right: auto; padding: 0 2rem; }
+        .footer-col h4 { color: #fff; margin-bottom: 1.5rem; font-family: var(--ff-d); font-size: 1.2rem; }
+        .footer-col p { color: var(--muted); font-size: 0.95rem; line-height: 1.6; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 0.8rem; }
+        .footer-col ul li a { color: var(--muted); transition: all 0.3s; font-size: 0.9rem; }
+        .footer-col ul li a:hover { color: var(--c); }
+        
+        .footer-bottom { border-top: 1px solid var(--glass-b); color: var(--muted); display: flex; justify-content: space-between; align-items: center; padding: 2rem 2rem 0; max-width: 1100px; margin: 0 auto; font-size: 0.9rem; }
+        .footer-legal a { margin-left: 1.5rem; color: var(--muted); transition: 0.3s; }
+        .footer-legal a:hover { color: #fff; }
+
+        .social-links { display: flex; gap: 1rem; margin-top: 1.5rem; }
+        .social-link { width: 40px; height: 40px; border-radius: 8px; border: 1px solid var(--glass-b); display: flex; align-items: center; justify-content: center; transition: all 0.3s; color: var(--muted); }
+        .social-link:hover { background: var(--c); border-color: var(--c); color: #fff; transform: translateY(-3px); }
+
+        .footer-email-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: #fff;
+            font-weight: 600;
+            margin-top: 1rem;
+            padding: 0.6rem 1.2rem;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            border-radius: 100px;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .footer-email-link i { color: var(--c); font-size: 1.1rem; transition: transform 0.4s; }
+        .footer-email-link:hover { background: var(--c); border-color: var(--c); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(107, 47, 217, 0.3); color: #fff; }
+        .footer-email-link:hover i { transform: rotate(15deg) scale(1.2); color: #fff; }
+
+        @media (max-width: 900px) {
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+            .footer-bottom { flex-direction: column; gap: 1.5rem; text-align: center; }
+            .footer-legal a { margin: 0 0.75rem; }
+        }
+        @media (max-width: 600px) {
+            .footer-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -383,6 +427,68 @@
             </div>
         </div>
     </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="index.html" class="logo" style="margin-bottom: 1.5rem;">
+                        <div class="logo-icon"><i class="fas fa-cube"></i></div>
+                        BST
+                    </a>
+                    <p style="margin-bottom: 1.5rem;">Building the future, one product at a time. Broad Solution Tech is a focused software studio dedicated to excellence in digital craftsmanship.</p>
+                    <a href="mailto:info@broadsolutiontech.com" class="footer-email-link">
+                        <i class="fas fa-envelope"></i>
+                        info@broadsolutiontech.com
+                    </a>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/chshehrozshafiq/" target="_blank" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/shehroz03" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="technology.html">Technology</a></li>
+                        <li><a href="our-work.html">Our Work</a></li>
+                        <li><a href="reviews.html">Reviews</a></li>
+                        <li><a href="about.html">Team</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Expertise</h4>
+                    <ul>
+                        <li><a href="#">Mobile Apps</a></li>
+                        <li><a href="#">Web Systems</a></li>
+                        <li><a href="#">AI Solutions</a></li>
+                        <li><a href="#">UI/UX Design</a></li>
+                        <li><a href="#">Cybersecurity</a></li>
+                        <li><a href="#">Cloud Systems</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Stay Updated</h4>
+                    <p style="font-size: 0.9rem; margin-bottom: 1.5rem;">Subscribe to get the latest tech insights and project updates.</p>
+                    <form class="footer-newsletter">
+                        <input type="email" placeholder="Email Address" style="margin-bottom: 1rem;">
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Broad Solution Tech. All rights reserved.</p>
+                <div class="footer-legal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <!-- Custom Cursor DOM (controlled by main.js) -->
     <div class="cursor-dot"></div>
