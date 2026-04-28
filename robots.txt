@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://broadsolutiontech.com/sitemap.xml
