@@ -12,6 +12,11 @@
     RewriteCond %{HTTP:X-Forwarded-Proto} !https
     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
+    # Map /assets and /public to handle different deployment styles
+    RewriteRule ^assets/(.*)$ public/assets/$1 [L]
+    RewriteRule ^favicon\.svg$ public/favicon.svg [L]
+    RewriteRule ^favicon\.ico$ public/favicon.ico [L]
+
     # Remove .html extension from URLs
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME}\.html -f
