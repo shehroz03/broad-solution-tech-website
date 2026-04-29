@@ -1,62 +1,51 @@
-// Initialize Vanta.js Birds
-window.addEventListener('DOMContentLoaded', () => {
-    if (typeof VANTA !== 'undefined' && VANTA.BIRDS) {
-        VANTA.BIRDS({
-            el: "#vanta-canvas",
-            mouseControls: false,
-            touchControls: false,
-            gyroControls: false,
-            minHeight: 200.00,
-            minWidth: 200.00,
-            scale: 1.00,
-            scaleMobile: 1.00,
-            backgroundColor: 0x05000f,
-            color1: 0x6b2fd9,
-            color2: 0x8b5cf6,
-            birdSize: 1.20,
-            wingSpan: 15.00,
-            speedLimit: 4.00,
-            quantity: 3.00,
-            separation: 50.00,
-            alignment: 50.00,
-            cohesion: 50.00
-        });
-    } else {
-        console.warn("Vanta.js Birds not loaded yet. Retrying...");
+// Preloader and Initial Load Logic
+window.addEventListener('load', () => {
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
         setTimeout(() => {
-            if (typeof VANTA !== 'undefined' && VANTA.BIRDS) {
-                VANTA.BIRDS({
-                    el: "#vanta-canvas",
-                    mouseControls: false,
-                    touchControls: false,
-                    gyroControls: false,
-                    minHeight: 200.00,
-                    minWidth: 200.00,
-                    scale: 1.00,
-                    scaleMobile: 1.00,
-                    backgroundColor: 0x05000f,
-                    color1: 0x6b2fd9,
-                    color2: 0x8b5cf6,
-                    birdSize: 1.20,
-                    wingSpan: 15.00,
-                    speedLimit: 4.00,
-                    quantity: 3.00,
-                    separation: 50.00,
-                    alignment: 50.00,
-                    cohesion: 50.00
-                });
-            }
-        }, 1000);
+            preloader.classList.add('preloader-hidden');
+            document.body.classList.remove('loading');
+        }, 600);
     }
+    
+    // Initialize Vanta.js Birds with Optimization
+    // Delay initialization slightly to let the browser breathe
+    setTimeout(() => {
+        if (typeof VANTA !== 'undefined' && VANTA.BIRDS) {
+            const isLowEnd = window.innerWidth < 768;
+            VANTA.BIRDS({
+                el: "#vanta-canvas",
+                mouseControls: !isLowEnd,
+                touchControls: false,
+                gyroControls: false,
+                minHeight: 200.00,
+                minWidth: 200.00,
+                scale: 1.00,
+                scaleMobile: 1.00,
+                backgroundColor: 0x05000f,
+                color1: 0x6b2fd9,
+                color2: 0x8b5cf6,
+                birdSize: isLowEnd ? 0.8 : 1.20,
+                wingSpan: 15.00,
+                speedLimit: 4.00,
+                quantity: isLowEnd ? 2.00 : 3.00,
+                separation: 50.00,
+                alignment: 50.00,
+                cohesion: 50.00
+            });
+        }
+    }, 1000);
 });
 
 // Optimized Scroll Handler
 window.addEventListener('scroll', () => {
     const navbar = document.getElementById('navbar');
-    if (window.scrollY > 50) {
-        navbar.classList.add('sticky');
-    } else {
-        navbar.classList.remove('sticky');
+    if (navbar) {
+        if (window.scrollY > 50) {
+            navbar.classList.add('sticky');
+        } else {
+            navbar.classList.remove('sticky');
+        }
     }
 }, { passive: true });
 
@@ -169,7 +158,7 @@ const projectData = {
         features: ["Real-time posts and stories", "Follow/unfollow system", "In-app messaging", "Push notifications", "Admin dashboard"],
         tech: { frontend: "React Native + React", backend: "Node.js + Express", database: "Firebase + Firestore" },
         tags: ["Social", "Mobile", "Real-time"],
-        images: ["/public/assets/images/projects/socialvibing.jpg.png", "/public/assets/images/projects/socialvibing1.jpeg", "/public/assets/images/projects/socialvibing2.jpeg"],
+        images: ["/assets/images/projects/socialvibing.jpg.png", "/assets/images/projects/socialvibing1.jpeg", "/assets/images/projects/socialvibing2.jpeg"],
         actions: [
             { label: "View on Play Store", icon: "fab fa-google-play", link: "#" },
             { label: "View on App Store", icon: "fab fa-apple", link: "#" },
@@ -182,7 +171,7 @@ const projectData = {
         features: ["Tour browsing and booking", "Custom itinerary planning", "Real-time availability", "Payment integration", "Review system"],
         tech: { frontend: "Flutter", backend: "Node.js", database: "MongoDB" },
         tags: ["Travel", "Booking", "Flutter"],
-        images: ["/public/assets/images/projects/tourease.jpg", "/public/assets/images/projects/tourease1.jpg", "/public/assets/images/projects/tourease2.jpg"],
+        images: ["/assets/images/projects/tourease.jpg", "/assets/images/projects/tourease1.jpg", "/assets/images/projects/tourease2.jpg"],
         actions: [{ label: "Visit Website", icon: "fas fa-external-link-alt", link: "#" }, { label: "View Code", icon: "fab fa-github", link: "#" }]
     },
     artgallery: {
@@ -191,7 +180,7 @@ const projectData = {
         features: ["High-res art previews", "Secure payment gateway", "Artist profiles", "Category-based search", "Order tracking"],
         tech: { frontend: "React + Tailwind", backend: "Node.js", database: "PostgreSQL" },
         tags: ["Art", "Marketplace", "Design"],
-        images: ["/public/assets/images/projects/artgallery.png", "/public/assets/images/projects/artgallery1.png", "/public/assets/images/projects/artgallery2.png"],
+        images: ["/assets/images/projects/artgallery.png", "/assets/images/projects/artgallery1.png", "/assets/images/projects/artgallery2.png"],
         actions: [{ label: "Visit Gallery", icon: "fas fa-external-link-alt", link: "#" }, { label: "View Portfolio", icon: "fas fa-briefcase", link: "#" }]
     },
     scholariq: {
@@ -200,7 +189,7 @@ const projectData = {
         features: ["AI scholarship matching", "Fraud detection system", "Application tracking", "Deadline reminders", "University database"],
         tech: { frontend: "Next.js", backend: "Python + FastAPI", database: "PostgreSQL + Supabase" },
         tags: ["AI", "Education", "Next.js"],
-        images: ["/public/assets/images/projects/scholariq.png", "/public/assets/images/projects/scholariq1.png", "/public/assets/images/projects/scholariq.png"],
+        images: ["/assets/images/projects/scholariq.png", "/assets/images/projects/scholariq1.png", "/assets/images/projects/scholariq.png"],
         actions: [{ label: "Visit Portal", icon: "fas fa-external-link-alt", link: "#" }, { label: "View Case Study", icon: "fas fa-file-alt", link: "#" }]
     }
 };
@@ -473,45 +462,6 @@ if (backToTopBtn) {
 }
 
 // ── AJAX Contact Form Submission ──────────────────────────────────────────────
-document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('contact-form');
-    if (!form) return;
-
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-
-        const btn = document.getElementById('contact-submit-btn');
-        const successBox = document.getElementById('form-success');
-
-        // Show loading state
-        btn.disabled = true;
-        btn.innerHTML = '<i class="fas fa-spinner fa-spin" style="margin-right:8px;"></i>Sending...';
-
-        try {
-            const data = new FormData(form);
-            const response = await fetch('https://formspree.io/f/meevwdbq', {
-                method: 'POST',
-                body: data,
-                headers: { 'Accept': 'application/json' }
-            });
-
-            if (response.ok) {
-                // Hide form, show success message
-                form.style.display = 'none';
-                successBox.style.display = 'block';
-            } else {
-                throw new Error('Server error');
-            }
-        } catch (err) {
-            // Reset button on error
-            btn.disabled = false;
-            btn.innerHTML = 'Send Inquiry';
-            alert('Something went wrong. Please try again or email us directly.');
-        }
-    });
-});
-
-// Robust AJAX Form Handler
 function initContactForm() {
     const form = document.getElementById('contact-form');
     if (!form) return;
@@ -557,9 +507,10 @@ function initContactForm() {
     });
 }
 
-// Initialize on load and also on scroll reveal if needed
+// Initialize on load
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initContactForm);
 } else {
     initContactForm();
 }
+
