@@ -191,6 +191,25 @@ const projectData = {
         tags: ["AI", "Education", "Next.js"],
         images: ["/assets/images/projects/scholariq.png", "/assets/images/projects/scholariq1.png", "/assets/images/projects/scholariq.png"],
         actions: [{ label: "Visit Portal", icon: "fas fa-external-link-alt", link: "#" }, { label: "View Case Study", icon: "fas fa-file-alt", link: "#" }]
+    },
+    kidsafari: {
+        title: "Kids Safari: Fun Learning", status: "SOON", statusClass: "soon",
+        description: "An interactive educational mobile application designed to make foundational learning fun and engaging for young children through gamified experiences.",
+        features: ["Interactive learning modules", "Kid-friendly UI with smooth animations", "Progress tracking for parents", "Audio-visual guidance", "Offline accessibility"],
+        tech: { frontend: "Flutter", backend: "Node.js + Express", database: "Supabase" },
+        tags: ["Education", "Kids", "Gamified", "Mobile"],
+        images: [
+            "/assets/images/projects/painting.jpeg",
+            "/assets/images/projects/quiz.jpeg",
+            "/assets/images/projects/tracing.jpeg",
+            "/assets/images/projects/carrot.jpeg",
+            "/assets/images/projects/apple.jpeg",
+            "/assets/images/projects/home.jpeg"
+        ],
+        actions: [
+            { label: "Join Testing", icon: "fab fa-google-play", link: "#" },
+            { label: "View Case Study", icon: "fas fa-file-alt", link: "#" }
+        ]
     }
 };
 
