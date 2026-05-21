@@ -109,7 +109,7 @@
         .rack-conn-line::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translate(-50%, 50%); width: 12px; height: 12px; background: #8b5cf6; border-radius: 50%; box-shadow: 0 0 15px #8b5cf6; }
         
         .rack-cofounders { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; max-width: 900px; margin: 0 auto 4rem; position: relative; z-index: 5; }
-        .rack-team { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; position: relative; z-index: 5; }
+        .rack-team { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; position: relative; z-index: 5; }
         
         .rack-unit { 
             background: rgba(255,255,255,0.02); 
@@ -126,6 +126,51 @@
         
         .rack-unit-leds { display: flex; gap: 6px; margin-bottom: 1.5rem; }
         .rack-unit-led { width: 6px; height: 6px; border-radius: 50%; background: var(--ru-color); opacity: 0.3; animation: ledPulse 2s infinite; }
+        
+        /* Premium Avatar Design */
+        .rack-avatar-container {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+        .rack-avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: border-color 0.4s ease, transform 0.4s ease;
+        }
+        .rack-unit:hover .rack-avatar,
+        .rack-fcard:hover .rack-avatar {
+            border-color: var(--ru-color);
+            transform: scale(1.05);
+        }
+        .rack-avatar-glow {
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: var(--ru-color);
+            opacity: 0;
+            filter: blur(8px);
+            z-index: -1;
+            transition: opacity 0.4s ease;
+        }
+        .rack-unit:hover .rack-avatar-glow,
+        .rack-fcard:hover .rack-avatar-glow {
+            opacity: 0.4;
+        }
+        .rack-fcard .rack-avatar-container {
+            width: 140px;
+            height: 140px;
+            margin: 0 0 2rem 0;
+        }
+        .rack-cofounders .rack-avatar-container {
+            width: 110px;
+            height: 110px;
+        }
         
         .rack-ubadge { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; color: var(--ru-color); letter-spacing: 2px; margin-bottom: 1rem; display: block; }
         .rack-uname { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.25rem; color: #fff; }
@@ -1249,9 +1294,13 @@
                 </div>
 
                 <div class="rack-founder">
-                    <div class="rack-fcard">
+                    <div class="rack-fcard" style="--ru-color:#8b5cf6">
                         <div class="rack-leds"><div class="rack-led"></div><div class="rack-led"></div><div class="rack-led"></div></div>
                         <div class="rack-fbadge">⚡ Founder &amp; CEO</div>
+                        <div class="rack-avatar-container">
+                            <img src="./src/assets/shehroz.jpeg" alt="Shehroz Shafiq" class="rack-avatar">
+                            <div class="rack-avatar-glow"></div>
+                        </div>
                         <div class="rack-fname">Shehroz Shafiq</div>
                         <div class="rack-ftitle">Full Stack Developer &amp; Studio Founder • 3+ Years</div>
                         <p class="rack-fdesc">With a passion for crafting elegant solutions to complex problems, Shehroz has led Broad Solution Tech to become a focused choice for startups globally. His expertise spans across the entire stack, focusing on performance and user experience.</p>
@@ -1275,6 +1324,10 @@
                 <div class="rack-cofounders">
                     <div class="rack-unit" style="--ru-color:#a78bfa">
                         <div class="rack-unit-leds"><div class="rack-unit-led"></div><div class="rack-unit-led"></div><div class="rack-unit-led"></div></div>
+                        <div class="rack-avatar-container">
+                            <img src="./src/assets/mubashir.png" alt="Mubashir Shafiq" class="rack-avatar">
+                            <div class="rack-avatar-glow"></div>
+                        </div>
                         <div class="rack-ubadge">Co-Founder</div>
                         <div class="rack-uname">Mubashir Shafiq</div>
                         <div class="rack-utitle">Co-Founder &amp; .NET Engineer</div>
@@ -1284,6 +1337,10 @@
                     </div>
                     <div class="rack-unit" style="--ru-color:#22d3ee">
                         <div class="rack-unit-leds"><div class="rack-unit-led"></div><div class="rack-unit-led"></div><div class="rack-unit-led"></div></div>
+                        <div class="rack-avatar-container">
+                            <img src="./src/assets/asim.png" alt="Asim Yaqoob" class="rack-avatar">
+                            <div class="rack-avatar-glow"></div>
+                        </div>
                         <div class="rack-ubadge">Co-Founder</div>
                         <div class="rack-uname">Asim Yaqoob</div>
                         <div class="rack-utitle">Co-Founder &amp; Web Developer</div>
@@ -1296,17 +1353,12 @@
                 <div class="rack-connector"><div class="rack-conn-line"></div></div>
 
                 <div class="rack-team" id="team">
-                    <div class="rack-unit" style="--ru-color:#f43f5e">
-                        <div class="rack-unit-leds"><div class="rack-unit-led"></div><div class="rack-unit-led"></div><div class="rack-unit-led"></div></div>
-                        <div class="rack-ubadge">Security</div>
-                        <div class="rack-uname">Waleed</div>
-                        <div class="rack-utitle">Cybersecurity Expert</div>
-                        <div class="rack-uexp">3+ YEARS</div>
-                        <div class="rack-uskills"><span class="rack-uskill">Pentesting</span><span class="rack-uskill">Cyber Defense</span></div>
-                        <a href="https://www.linkedin.com/in/chshehrozshafiq/" target="_blank" class="rack-ulink"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
                     <div class="rack-unit" style="--ru-color:#4ade80">
                         <div class="rack-unit-leds"><div class="rack-unit-led"></div><div class="rack-unit-led"></div><div class="rack-unit-led"></div></div>
+                        <div class="rack-avatar-container">
+                            <img src="./src/assets/usman.png" alt="Usman Shan" class="rack-avatar">
+                            <div class="rack-avatar-glow"></div>
+                        </div>
                         <div class="rack-ubadge">Developer</div>
                         <div class="rack-uname">Usman Shan</div>
                         <div class="rack-utitle">Software Developer</div>
@@ -1314,8 +1366,51 @@
                         <div class="rack-uskills"><span class="rack-uskill">Web Dev</span><span class="rack-uskill">Programming</span></div>
                         <a href="https://www.linkedin.com/in/chshehrozshafiq/" target="_blank" class="rack-ulink"><i class="fab fa-linkedin-in"></i></a>
                     </div>
+                    <div class="rack-unit" style="--ru-color:#14b8a6">
+                        <div class="rack-unit-leds"><div class="rack-unit-led"></div><div class="rack-unit-led"></div><div class="rack-unit-led"></div></div>
+                        <div class="rack-avatar-container">
+                            <img src="./src/assets/yaseen.png" alt="Yaseen Liaqat" class="rack-avatar">
+                            <div class="rack-avatar-glow"></div>
+                        </div>
+                        <div class="rack-ubadge">Engineer</div>
+                        <div class="rack-uname">Yaseen Liaqat</div>
+                        <div class="rack-utitle">Full-Stack &amp; Data Engineer</div>
+                        <div class="rack-uexp">3+ YEARS</div>
+                        <div class="rack-uskills"><span class="rack-uskill">.NET</span><span class="rack-uskill">React</span><span class="rack-uskill">Data Analytics</span></div>
+                        <a href="https://www.linkedin.com/in/chshehrozshafiq/" target="_blank" class="rack-ulink"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <div class="rack-unit" style="--ru-color:#6366f1">
+                        <div class="rack-unit-leds"><div class="rack-unit-led"></div><div class="rack-unit-led"></div><div class="rack-unit-led"></div></div>
+                        <div class="rack-avatar-container">
+                            <img src="./src/assets/fasih.png" alt="Fasih Malhi" class="rack-avatar">
+                            <div class="rack-avatar-glow"></div>
+                        </div>
+                        <div class="rack-ubadge">Data Science</div>
+                        <div class="rack-uname">Fasih Malhi</div>
+                        <div class="rack-utitle">Associate Data Scientist &amp; ML Engineer</div>
+                        <div class="rack-uexp">2+ YEARS</div>
+                        <div class="rack-uskills"><span class="rack-uskill">PyTorch</span><span class="rack-uskill">TensorFlow</span><span class="rack-uskill">ML / AI</span></div>
+                        <a href="https://www.linkedin.com/in/chshehrozshafiq/" target="_blank" class="rack-ulink"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <div class="rack-unit" style="--ru-color:#f43f5e">
+                        <div class="rack-unit-leds"><div class="rack-unit-led"></div><div class="rack-unit-led"></div><div class="rack-unit-led"></div></div>
+                        <div class="rack-avatar-container">
+                            <img src="./src/assets/waleed.png" alt="Waleed" class="rack-avatar">
+                            <div class="rack-avatar-glow"></div>
+                        </div>
+                        <div class="rack-ubadge">Security</div>
+                        <div class="rack-uname">Waleed</div>
+                        <div class="rack-utitle">Cybersecurity Expert</div>
+                        <div class="rack-uexp">3+ YEARS</div>
+                        <div class="rack-uskills"><span class="rack-uskill">Pentesting</span><span class="rack-uskill">Cyber Defense</span></div>
+                        <a href="https://www.linkedin.com/in/chshehrozshafiq/" target="_blank" class="rack-ulink"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
                     <div class="rack-unit" style="--ru-color:#fb923c">
                         <div class="rack-unit-leds"><div class="rack-unit-led"></div><div class="rack-unit-led"></div><div class="rack-unit-led"></div></div>
+                        <div class="rack-avatar-container">
+                            <img src="./src/assets/atta.png" alt="Attaullah" class="rack-avatar">
+                            <div class="rack-avatar-glow"></div>
+                        </div>
                         <div class="rack-ubadge">QA</div>
                         <div class="rack-uname">Attaullah</div>
                         <div class="rack-utitle">QA Engineer &amp; Tester</div>
@@ -1325,6 +1420,10 @@
                     </div>
                     <div class="rack-unit" style="--ru-color:#f093fb">
                         <div class="rack-unit-leds"><div class="rack-unit-led"></div><div class="rack-unit-led"></div><div class="rack-unit-led"></div></div>
+                        <div class="rack-avatar-container">
+                            <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=150&q=80" alt="Bilawal" class="rack-avatar">
+                            <div class="rack-avatar-glow"></div>
+                        </div>
                         <div class="rack-ubadge">Design</div>
                         <div class="rack-uname">Bilawal</div>
                         <div class="rack-utitle">Graphic Designer</div>
