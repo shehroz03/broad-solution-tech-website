@@ -1,6 +1,7 @@
 import os
+import re
 
-css_content = """
+css_content = """<!-- START INLINE TEAM CSS -->
     <style>
         .rack-section { padding: 8rem 0; position: relative; overflow: hidden; background: #05000f; }
         .rack-header { text-align: center; margin-bottom: 5rem; position: relative; z-index: 5; }
@@ -40,7 +41,7 @@ css_content = """
         .rack-conn-line { width: 2px; height: 60px; background: linear-gradient(180deg, #8b5cf6, transparent); position: relative; }
         .rack-conn-line::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translate(-50%, 50%); width: 12px; height: 12px; background: #8b5cf6; border-radius: 50%; box-shadow: 0 0 15px #8b5cf6; }
         
-        .rack-cofounders { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; max-width: 900px; margin: 0 auto 4rem; position: relative; z-index: 5; }
+        .rack-cofounders { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width: 1200px; margin: 0 auto 4rem; position: relative; z-index: 5; }
         .rack-team { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; position: relative; z-index: 5; }
         
         .rack-unit { 
@@ -59,6 +60,51 @@ css_content = """
         .rack-unit-leds { display: flex; gap: 6px; margin-bottom: 1.5rem; }
         .rack-unit-led { width: 6px; height: 6px; border-radius: 50%; background: var(--ru-color); opacity: 0.3; animation: ledPulse 2s infinite; }
         
+        /* Premium Avatar Design */
+        .rack-avatar-container {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+        .rack-avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: border-color 0.4s ease, transform 0.4s ease;
+        }
+        .rack-unit:hover .rack-avatar,
+        .rack-fcard:hover .rack-avatar {
+            border-color: var(--ru-color);
+            transform: scale(1.05);
+        }
+        .rack-avatar-glow {
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: var(--ru-color);
+            opacity: 0;
+            filter: blur(8px);
+            z-index: -1;
+            transition: opacity 0.4s ease;
+        }
+        .rack-unit:hover .rack-avatar-glow,
+        .rack-fcard:hover .rack-avatar-glow {
+            opacity: 0.4;
+        }
+        .rack-fcard .rack-avatar-container {
+            width: 140px;
+            height: 140px;
+            margin: 0 0 2rem 0;
+        }
+        .rack-cofounders .rack-avatar-container {
+            width: 110px;
+            height: 110px;
+        }
+        
         .rack-ubadge { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; color: var(--ru-color); letter-spacing: 2px; margin-bottom: 1rem; display: block; }
         .rack-uname { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.25rem; color: #fff; }
         .rack-utitle { font-size: 0.85rem; color: rgba(255,255,255,0.4); margin-bottom: 1rem; }
@@ -71,6 +117,7 @@ css_content = """
         .rack-ulink:hover { background: var(--ru-color); color: #fff; transform: rotate(360deg); }
         
         @media (max-width: 1024px) {
+            .rack-cofounders { grid-template-columns: 1fr 1fr; }
             .rack-team { grid-template-columns: 1fr 1fr; }
         }
         @media (max-width: 600px) {
@@ -79,7 +126,7 @@ css_content = """
             .rack-fcard { padding: 2rem; }
         }
     </style>
-"""
+<!-- END INLINE TEAM CSS -->"""
 
 files = ['index.html', 'about.html']
 for filename in files:
@@ -87,11 +134,20 @@ for filename in files:
     with open(filepath, 'r', encoding='utf-8') as f:
         content = f.read()
     
-    # Insert before </head>
+    # Remove existing styled block(s) if present
+    content = re.sub(r'<!-- START INLINE TEAM CSS -->.*?<!-- END INLINE TEAM CSS -->', '', content, flags=re.DOTALL)
+    # Also clean up any un-commented raw styles that matching our old class names to avoid duplicates
+    old_style_pattern = r'<style>\s*\.rack-section\s*\{.*?</style>'
+    content = re.sub(old_style_pattern, '', content, flags=re.DOTALL)
+    
+    # Insert new styles cleanly before </head>
     if '</head>' in content:
-        content = content.replace('</head>', css_content + '</head>')
+        content = content.replace('</head>', css_content + '\n</head>')
+        print(f"Successfully processed and cleaned {filename}")
+    else:
+        print(f"Could not find </head> in {filename}")
         
     with open(filepath, 'w', encoding='utf-8') as f:
         f.write(content)
 
-print("Inlined CSS to HTML files.")
+print("Inlined CSS to HTML files successfully with robustness guards.")

@@ -63,7 +63,8 @@ new_section = """        <!-- SERVER-RACK TEAM SECTION -->
             .rack-ftech i:hover{color:#06b6d4;transform:scale(1.2)}
             .rack-flinks{display:flex;gap:10px;flex-wrap:wrap}
             .rack-flinks .btn{font-size:13px;padding:.6rem 1.2rem}
-            .rack-cofounders{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:700px;margin:0 auto 2rem;position:relative;z-index:2}
+            .rack-cofounders{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1000px;margin:0 auto 2rem;position:relative;z-index:2}
+            @media(max-width:1024px){.rack-cofounders{grid-template-columns:repeat(2,1fr)}}
             @media(max-width:640px){.rack-cofounders{grid-template-columns:1fr}}
             .rack-team{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;position:relative;z-index:2}
             @media(max-width:1024px){.rack-team{grid-template-columns:repeat(2,1fr)}}
@@ -101,23 +102,24 @@ new_section = """        <!-- SERVER-RACK TEAM SECTION -->
                 </div>
 
                 <div class="rack-founder">
-                    <div class="rack-fcard">
+                    <div class="rack-fcard" style="--ru-color:#06b6d4">
                         <div class="rack-leds"><div class="rack-led"></div><div class="rack-led"></div><div class="rack-led"></div></div>
-                        <div class="rack-fbadge">\u26a1 Founder &amp; CEO</div>
-                        <div class="rack-fname">Shehroz Shafiq</div>
-                        <div class="rack-ftitle">Full Stack Developer &amp; Studio Founder \u2022 3+ Years</div>
-                        <p class="rack-fdesc">With a passion for crafting elegant solutions to complex problems, Shehroz has led Broad Solution Tech to become a focused choice for startups globally. His expertise spans across the entire stack, focusing on performance and user experience.</p>
+                        <div class="rack-fbadge">⚡ Founder &amp; CEO</div>
+                        <div class="rack-avatar-container">
+                            <img src="./src/assets/arbaz.jpg" alt="Arbaz Nasir Virk" class="rack-avatar">
+                            <div class="rack-avatar-glow"></div>
+                        </div>
+                        <div class="rack-fname">Arbaz Nasir Virk</div>
+                        <div class="rack-ftitle">Founder &amp; CEO</div>
+                        <p class="rack-fdesc">A visionary entrepreneur and technology strategist, Arbaz Nasir Virk founded Broad Solution Tech with a mission to deliver elite digital craftsmanship. He guides the company's long-term vision, strategic growth, and commitment to engineering excellence.</p>
                         <div class="rack-ftech">
-                            <i class="fab fa-react" title="React"></i>
-                            <i class="fab fa-node-js" title="Node.js"></i>
-                            <i class="fab fa-python" title="Python"></i>
-                            <i class="fab fa-js" title="JavaScript"></i>
-                            <i class="fas fa-database" title="Databases"></i>
+                            <i class="fas fa-chart-line" title="Business Strategy"></i>
+                            <i class="fas fa-lightbulb" title="Innovation"></i>
+                            <i class="fas fa-project-diagram" title="Tech Architecture"></i>
+                            <i class="fas fa-handshake" title="Client Partnerships"></i>
                         </div>
                         <div class="rack-flinks">
-                            <a href="https://www.linkedin.com/in/chshehrozshafiq/" target="_blank" class="btn btn-primary">LinkedIn</a>
-                            <a href="https://www.upwork.com/freelancers/~01f611eabb374e757e?viewMode=1" target="_blank" class="btn btn-outline">Upwork</a>
-                            <a href="https://www.fiverr.com/users/scrapingmaster1" target="_blank" class="btn btn-outline">Fiverr</a>
+                            <a href="#" target="_blank" class="btn btn-primary">LinkedIn</a>
                         </div>
                     </div>
                 </div>
@@ -125,23 +127,44 @@ new_section = """        <!-- SERVER-RACK TEAM SECTION -->
                 <div class="rack-connector"><div class="rack-conn-line"></div></div>
 
                 <div class="rack-cofounders">
+                    <div class="rack-unit" style="--ru-color:#8b5cf6">
+                        <div class="rack-unit-leds"><div class="rack-unit-led"></div><div class="rack-unit-led"></div><div class="rack-unit-led"></div></div>
+                        <div class="rack-avatar-container">
+                            <img src="./src/assets/shehroz.jpeg" alt="Shehroz Shafiq" class="rack-avatar">
+                            <div class="rack-avatar-glow"></div>
+                        </div>
+                        <div class="rack-ubadge">Co-Founder &amp; CTO</div>
+                        <div class="rack-uname">Shehroz Shafiq</div>
+                        <div class="rack-utitle">Co-Founder &amp; Technical Director</div>
+                        <div class="rack-uexp">3+ YEARS</div>
+                        <div class="rack-uskills"><span class="rack-uskill">React</span><span class="rack-uskill">Node.js</span><span class="rack-uskill">Python</span><span class="rack-uskill">Full Stack</span></div>
+                        <a href="https://www.linkedin.com/in/chshehrozshafiq/" target="_blank" class="rack-ulink"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
                     <div class="rack-unit" style="--ru-color:#a78bfa">
                         <div class="rack-unit-leds"><div class="rack-unit-led"></div><div class="rack-unit-led"></div><div class="rack-unit-led"></div></div>
+                        <div class="rack-avatar-container">
+                            <img src="./src/assets/mubashir.png" alt="Mubashir Shafiq" class="rack-avatar">
+                            <div class="rack-avatar-glow"></div>
+                        </div>
                         <div class="rack-ubadge">Co-Founder</div>
                         <div class="rack-uname">Mubashir Shafiq</div>
                         <div class="rack-utitle">Co-Founder &amp; .NET Engineer</div>
                         <div class="rack-uexp">6+ YEARS</div>
                         <div class="rack-uskills"><span class="rack-uskill">C#</span><span class="rack-uskill">.NET</span><span class="rack-uskill">Enterprise</span></div>
-                        <a href="https://www.linkedin.com/in/chshehrozshafiq/" target="_blank" class="rack-ulink"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.linkedin.com/in/mubashirshafiq/" target="_blank" class="rack-ulink"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                     <div class="rack-unit" style="--ru-color:#22d3ee">
                         <div class="rack-unit-leds"><div class="rack-unit-led"></div><div class="rack-unit-led"></div><div class="rack-unit-led"></div></div>
+                        <div class="rack-avatar-container">
+                            <img src="./src/assets/asim.png" alt="Asim Yaqoob" class="rack-avatar">
+                            <div class="rack-avatar-glow"></div>
+                        </div>
                         <div class="rack-ubadge">Co-Founder</div>
                         <div class="rack-uname">Asim Yaqoob</div>
                         <div class="rack-utitle">Co-Founder &amp; Web Developer</div>
                         <div class="rack-uexp">3+ YEARS</div>
                         <div class="rack-uskills"><span class="rack-uskill">Frontend</span><span class="rack-uskill">Backend</span><span class="rack-uskill">Full Stack</span></div>
-                        <a href="https://www.linkedin.com/in/chshehrozshafiq/" target="_blank" class="rack-ulink"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.linkedin.com/in/mian-asim-yaqoob-46580b334/" target="_blank" class="rack-ulink"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
 
@@ -173,15 +196,6 @@ new_section = """        <!-- SERVER-RACK TEAM SECTION -->
                         <div class="rack-utitle">QA Engineer &amp; Tester</div>
                         <div class="rack-uexp">3+ YEARS</div>
                         <div class="rack-uskills"><span class="rack-uskill">QA</span><span class="rack-uskill">Testing</span><span class="rack-uskill">Bug Tracking</span></div>
-                        <a href="https://www.linkedin.com/in/chshehrozshafiq/" target="_blank" class="rack-ulink"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                    <div class="rack-unit" style="--ru-color:#f093fb">
-                        <div class="rack-unit-leds"><div class="rack-unit-led"></div><div class="rack-unit-led"></div><div class="rack-unit-led"></div></div>
-                        <div class="rack-ubadge">Design</div>
-                        <div class="rack-uname">Bilawal</div>
-                        <div class="rack-utitle">Graphic Designer</div>
-                        <div class="rack-uexp">3+ YEARS</div>
-                        <div class="rack-uskills"><span class="rack-uskill">UI Design</span><span class="rack-uskill">Branding</span><span class="rack-uskill">Figma</span></div>
                         <a href="https://www.linkedin.com/in/chshehrozshafiq/" target="_blank" class="rack-ulink"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>

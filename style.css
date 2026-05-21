@@ -280,3 +280,44 @@ input::placeholder, textarea::placeholder {
     transform: rotate(15deg) scale(1.2);
     color: #fff;
 }
+
+/* Premium Glowing Navigation CTA Button */
+.nav-cta-btn {
+    background: linear-gradient(135deg, #6b2fd9, #8b5cf6);
+    color: #fff !important;
+    border-radius: 30px;
+    padding: 0.5rem 1.3rem;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-cta-btn:hover {
+    background: linear-gradient(135deg, #8b5cf6, #00d1ff);
+    box-shadow: 0 0 25px rgba(0, 209, 255, 0.6);
+    transform: translateY(-2px);
+    color: #fff !important;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.nav-cta-btn i {
+    font-size: 0.9rem;
+    color: #fff;
+}
+
+/* Responsive adjustment for Mobile Nav */
+@media (max-width: 768px) {
+    .nav-cta-btn {
+        margin-top: 1rem;
+        width: 100%;
+        justify-content: center;
+    }
+}
+

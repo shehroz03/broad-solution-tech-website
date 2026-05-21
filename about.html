@@ -96,7 +96,7 @@
         .rack-conn-line { width: 2px; height: 60px; background: linear-gradient(180deg, #8b5cf6, transparent); position: relative; }
         .rack-conn-line::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translate(-50%, 50%); width: 12px; height: 12px; background: #8b5cf6; border-radius: 50%; box-shadow: 0 0 15px #8b5cf6; }
         
-        .rack-cofounders { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; max-width: 900px; margin: 0 auto 4rem; position: relative; z-index: 5; }
+        .rack-cofounders { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width: 1200px; margin: 0 auto 4rem; position: relative; z-index: 5; }
         .rack-team { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; position: relative; z-index: 5; }
         
         .rack-unit { 
@@ -172,6 +172,7 @@
         .rack-ulink:hover { background: var(--ru-color); color: #fff; transform: rotate(360deg); }
         
         @media (max-width: 1024px) {
+            .rack-cofounders { grid-template-columns: 1fr 1fr; }
             .rack-team { grid-template-columns: 1fr 1fr; }
         }
         @media (max-width: 600px) {
@@ -182,6 +183,134 @@
     </style>
 
                     
+
+    
+<!-- START INLINE TEAM CSS -->
+    <style>
+        .rack-section { padding: 8rem 0; position: relative; overflow: hidden; background: #05000f; }
+        .rack-header { text-align: center; margin-bottom: 5rem; position: relative; z-index: 5; }
+        .rack-header h2 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 1rem; }
+        .rack-sub { color: rgba(255,255,255,0.5); max-width: 600px; margin: 0 auto; }
+        
+        .rack-bg-lines { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
+        .rack-flow { position: absolute; width: 1px; background: linear-gradient(180deg, transparent, #8b5cf6, transparent); opacity: 0.2; animation: rackFlow 4s linear infinite; }
+        @keyframes rackFlow { 0% { top: -20%; opacity: 0; } 50% { opacity: 0.3; } 100% { top: 120%; opacity: 0; } }
+        
+        .rack-founder { max-width: 800px; margin: 0 auto 4rem; position: relative; z-index: 5; }
+        .rack-fcard { 
+            background: rgba(255,255,255,0.03); 
+            border: 1px solid rgba(139,92,246,0.2); 
+            border-radius: 24px; 
+            padding: 3rem; 
+            position: relative; 
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+        }
+        .rack-fcard:hover { border-color: #8b5cf6; transform: translateY(-5px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .rack-fcard::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #6b2fd9, #8b5cf6); border-radius: 24px 24px 0 0; }
+        
+        .rack-leds { position: absolute; top: 20px; right: 30px; display: flex; gap: 10px; }
+        .rack-led { width: 10px; height: 10px; border-radius: 50%; animation: ledPulse 2s infinite; }
+        @keyframes ledPulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(0.9); } }
+        
+        .rack-fbadge { display: inline-block; padding: 6px 16px; background: rgba(139,92,246,0.1); color: #a78bfa; border: 1px solid rgba(139,92,246,0.3); border-radius: 100px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 1.5rem; }
+        .rack-fname { font-size: 2.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .rack-ftitle { color: #8b5cf6; font-weight: 600; margin-bottom: 1.5rem; display: block; opacity: 0.8; }
+        .rack-fdesc { color: rgba(255,255,255,0.6); line-height: 1.8; margin-bottom: 2rem; font-size: 1.1rem; }
+        
+        .rack-ftech { display: flex; gap: 20px; margin-bottom: 2rem; font-size: 1.5rem; color: rgba(255,255,255,0.4); }
+        .rack-ftech i:hover { color: #8b5cf6; transform: scale(1.2); }
+        
+        .rack-connector { display: flex; justify-content: center; margin: 2rem 0; position: relative; z-index: 5; }
+        .rack-conn-line { width: 2px; height: 60px; background: linear-gradient(180deg, #8b5cf6, transparent); position: relative; }
+        .rack-conn-line::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translate(-50%, 50%); width: 12px; height: 12px; background: #8b5cf6; border-radius: 50%; box-shadow: 0 0 15px #8b5cf6; }
+        
+        .rack-cofounders { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width: 1200px; margin: 0 auto 4rem; position: relative; z-index: 5; }
+        .rack-team { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; position: relative; z-index: 5; }
+        
+        .rack-unit { 
+            background: rgba(255,255,255,0.02); 
+            border: 1px solid rgba(255,255,255,0.05); 
+            border-radius: 20px; 
+            padding: 2rem; 
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .rack-unit:hover { border-color: var(--ru-color); transform: translateY(-8px); background: rgba(255,255,255,0.04); }
+        .rack-unit::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 3px; background: var(--ru-color); transform: scaleX(0); transition: transform 0.4s ease; transform-origin: left; }
+        .rack-unit:hover::after { transform: scaleX(1); }
+        
+        .rack-unit-leds { display: flex; gap: 6px; margin-bottom: 1.5rem; }
+        .rack-unit-led { width: 6px; height: 6px; border-radius: 50%; background: var(--ru-color); opacity: 0.3; animation: ledPulse 2s infinite; }
+        
+        /* Premium Avatar Design */
+        .rack-avatar-container {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+        .rack-avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: border-color 0.4s ease, transform 0.4s ease;
+        }
+        .rack-unit:hover .rack-avatar,
+        .rack-fcard:hover .rack-avatar {
+            border-color: var(--ru-color);
+            transform: scale(1.05);
+        }
+        .rack-avatar-glow {
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            background: var(--ru-color);
+            opacity: 0;
+            filter: blur(8px);
+            z-index: -1;
+            transition: opacity 0.4s ease;
+        }
+        .rack-unit:hover .rack-avatar-glow,
+        .rack-fcard:hover .rack-avatar-glow {
+            opacity: 0.4;
+        }
+        .rack-fcard .rack-avatar-container {
+            width: 140px;
+            height: 140px;
+            margin: 0 0 2rem 0;
+        }
+        .rack-cofounders .rack-avatar-container {
+            width: 110px;
+            height: 110px;
+        }
+        
+        .rack-ubadge { font-size: 0.65rem; font-weight: 700; text-transform: uppercase; color: var(--ru-color); letter-spacing: 2px; margin-bottom: 1rem; display: block; }
+        .rack-uname { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.25rem; color: #fff; }
+        .rack-utitle { font-size: 0.85rem; color: rgba(255,255,255,0.4); margin-bottom: 1rem; }
+        .rack-uexp { font-size: 0.75rem; font-weight: 800; color: var(--ru-color); margin-bottom: 1rem; }
+        
+        .rack-uskills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1.5rem; }
+        .rack-uskill { font-size: 0.7rem; padding: 4px 10px; background: rgba(255,255,255,0.05); border-radius: 100px; color: rgba(255,255,255,0.6); }
+        
+        .rack-ulink { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.5); transition: all 0.3s; }
+        .rack-ulink:hover { background: var(--ru-color); color: #fff; transform: rotate(360deg); }
+        
+        @media (max-width: 1024px) {
+            .rack-cofounders { grid-template-columns: 1fr 1fr; }
+            .rack-team { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 600px) {
+            .rack-cofounders, .rack-team { grid-template-columns: 1fr; }
+            .rack-fname { font-size: 2rem; }
+            .rack-fcard { padding: 2rem; }
+        }
+    </style>
+<!-- END INLINE TEAM CSS -->
 </head>
 
 <body class="loading">
@@ -215,7 +344,8 @@
                     <a href="about.html" class="active">Team</a>
 
                     <a href="contact.html">Contact</a>
-                </div>
+                                    <a href="https://project.broadsolutiontech.com/" target="_blank" class="nav-cta-btn"><i class="fas fa-rocket"></i> Order Project</a>
+</div>
             </div>
         </nav>
 
@@ -240,27 +370,24 @@
                 </div>
 
                 <div class="rack-founder">
-                    <div class="rack-fcard" style="--ru-color:#8b5cf6">
+                    <div class="rack-fcard" style="--ru-color:#06b6d4">
                         <div class="rack-leds"><div class="rack-led"></div><div class="rack-led"></div><div class="rack-led"></div></div>
-                        <div class="rack-fbadge">⚡ Founder & CEO</div>
+                        <div class="rack-fbadge">⚡ Founder &amp; CEO</div>
                         <div class="rack-avatar-container">
-                            <img src="./src/assets/shehroz.jpeg" alt="Shehroz Shafiq" class="rack-avatar">
+                            <img src="./src/assets/arbaz.jpg" alt="Arbaz Nasir Virk" class="rack-avatar">
                             <div class="rack-avatar-glow"></div>
                         </div>
-                        <div class="rack-fname">Shehroz Shafiq</div>
-                        <div class="rack-ftitle">Full Stack Developer & Studio Founder • 3+ Years</div>
-                        <p class="rack-fdesc">With a passion for crafting elegant solutions to complex problems, Shehroz has led Broad Solution Tech to become a focused choice for startups globally. His expertise spans across the entire stack, focusing on performance and user experience.</p>
+                        <div class="rack-fname">Arbaz Nasir Virk</div>
+                        <div class="rack-ftitle">Founder &amp; CEO</div>
+                        <p class="rack-fdesc">A visionary entrepreneur and technology strategist, Arbaz Nasir Virk founded Broad Solution Tech with a mission to deliver elite digital craftsmanship. He guides the company's long-term vision, strategic growth, and commitment to engineering excellence.</p>
                         <div class="rack-ftech">
-                            <i class="fab fa-react" title="React"></i>
-                            <i class="fab fa-node-js" title="Node.js"></i>
-                            <i class="fab fa-python" title="Python"></i>
-                            <i class="fab fa-js" title="JavaScript"></i>
-                            <i class="fas fa-database" title="Databases"></i>
+                            <i class="fas fa-chart-line" title="Business Strategy"></i>
+                            <i class="fas fa-lightbulb" title="Innovation"></i>
+                            <i class="fas fa-project-diagram" title="Tech Architecture"></i>
+                            <i class="fas fa-handshake" title="Client Partnerships"></i>
                         </div>
                         <div class="rack-flinks">
-                            <a href="https://www.linkedin.com/in/chshehrozshafiq/" target="_blank" class="btn btn-primary">LinkedIn</a>
-                            <a href="https://www.upwork.com/freelancers/~01f611eabb374e757e?viewMode=1" target="_blank" class="btn btn-outline">Upwork</a>
-                            <a href="https://www.fiverr.com/users/scrapingmaster1" target="_blank" class="btn btn-outline">Fiverr</a>
+                            <a href="#" target="_blank" class="btn btn-primary">LinkedIn</a>
                         </div>
                     </div>
                 </div>
@@ -268,6 +395,19 @@
                 <div class="rack-connector"><div class="rack-conn-line"></div></div>
 
                 <div class="rack-cofounders">
+                    <div class="rack-unit" style="--ru-color:#8b5cf6">
+                        <div class="rack-unit-leds"><div class="rack-unit-led"></div><div class="rack-unit-led"></div><div class="rack-unit-led"></div></div>
+                        <div class="rack-avatar-container">
+                            <img src="./src/assets/shehroz.jpeg" alt="Shehroz Shafiq" class="rack-avatar">
+                            <div class="rack-avatar-glow"></div>
+                        </div>
+                        <div class="rack-ubadge">Co-Founder &amp; CTO</div>
+                        <div class="rack-uname">Shehroz Shafiq</div>
+                        <div class="rack-utitle">Co-Founder &amp; Technical Director</div>
+                        <div class="rack-uexp">3+ YEARS</div>
+                        <div class="rack-uskills"><span class="rack-uskill">React</span><span class="rack-uskill">Node.js</span><span class="rack-uskill">Python</span><span class="rack-uskill">Full Stack</span></div>
+                        <a href="https://www.linkedin.com/in/chshehrozshafiq/" target="_blank" class="rack-ulink"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
                     <div class="rack-unit" style="--ru-color:#a78bfa">
                         <div class="rack-unit-leds"><div class="rack-unit-led"></div><div class="rack-unit-led"></div><div class="rack-unit-led"></div></div>
                         <div class="rack-avatar-container">
@@ -276,7 +416,7 @@
                         </div>
                         <div class="rack-ubadge">Co-Founder</div>
                         <div class="rack-uname">Mubashir Shafiq</div>
-                        <div class="rack-utitle">Co-Founder & .NET Engineer</div>
+                        <div class="rack-utitle">Co-Founder &amp; .NET Engineer</div>
                         <div class="rack-uexp">6+ YEARS</div>
                         <div class="rack-uskills"><span class="rack-uskill">C#</span><span class="rack-uskill">.NET</span><span class="rack-uskill">Enterprise</span></div>
                         <a href="https://www.linkedin.com/in/mubashirshafiq/" target="_blank" class="rack-ulink"><i class="fab fa-linkedin-in"></i></a>
@@ -289,10 +429,10 @@
                         </div>
                         <div class="rack-ubadge">Co-Founder</div>
                         <div class="rack-uname">Asim Yaqoob</div>
-                        <div class="rack-utitle">Co-Founder & Web Developer</div>
+                        <div class="rack-utitle">Co-Founder &amp; Web Developer</div>
                         <div class="rack-uexp">3+ YEARS</div>
                         <div class="rack-uskills"><span class="rack-uskill">Frontend</span><span class="rack-uskill">Backend</span><span class="rack-uskill">Full Stack</span></div>
-                        <a href="https://www.linkedin.com/in/chshehrozshafiq/" target="_blank" class="rack-ulink"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.linkedin.com/in/mian-asim-yaqoob-46580b334/" target="_blank" class="rack-ulink"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
 
@@ -310,7 +450,7 @@
                         <div class="rack-utitle">Software Developer</div>
                         <div class="rack-uexp">3+ YEARS</div>
                         <div class="rack-uskills"><span class="rack-uskill">Web Dev</span><span class="rack-uskill">Programming</span></div>
-                        <a href="https://www.linkedin.com/in/chshehrozshafiq/" target="_blank" class="rack-ulink"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="rack-ulink"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                     <div class="rack-unit" style="--ru-color:#14b8a6">
                         <div class="rack-unit-leds"><div class="rack-unit-led"></div><div class="rack-unit-led"></div><div class="rack-unit-led"></div></div>
@@ -323,7 +463,7 @@
                         <div class="rack-utitle">Full-Stack &amp; Data Engineer</div>
                         <div class="rack-uexp">3+ YEARS</div>
                         <div class="rack-uskills"><span class="rack-uskill">.NET</span><span class="rack-uskill">React</span><span class="rack-uskill">Data Analytics</span></div>
-                        <a href="https://www.linkedin.com/in/chshehrozshafiq/" target="_blank" class="rack-ulink"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="rack-ulink"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                     <div class="rack-unit" style="--ru-color:#6366f1">
                         <div class="rack-unit-leds"><div class="rack-unit-led"></div><div class="rack-unit-led"></div><div class="rack-unit-led"></div></div>
@@ -336,7 +476,7 @@
                         <div class="rack-utitle">Associate Data Scientist &amp; ML Engineer</div>
                         <div class="rack-uexp">2+ YEARS</div>
                         <div class="rack-uskills"><span class="rack-uskill">PyTorch</span><span class="rack-uskill">TensorFlow</span><span class="rack-uskill">ML / AI</span></div>
-                        <a href="https://www.linkedin.com/in/chshehrozshafiq/" target="_blank" class="rack-ulink"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="rack-ulink"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                     <div class="rack-unit" style="--ru-color:#f43f5e">
                         <div class="rack-unit-leds"><div class="rack-unit-led"></div><div class="rack-unit-led"></div><div class="rack-unit-led"></div></div>
@@ -349,7 +489,7 @@
                         <div class="rack-utitle">Cybersecurity Expert</div>
                         <div class="rack-uexp">3+ YEARS</div>
                         <div class="rack-uskills"><span class="rack-uskill">Pentesting</span><span class="rack-uskill">Cyber Defense</span></div>
-                        <a href="https://www.linkedin.com/in/chshehrozshafiq/" target="_blank" class="rack-ulink"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="rack-ulink"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                     <div class="rack-unit" style="--ru-color:#fb923c">
                         <div class="rack-unit-leds"><div class="rack-unit-led"></div><div class="rack-unit-led"></div><div class="rack-unit-led"></div></div>
@@ -362,20 +502,7 @@
                         <div class="rack-utitle">QA Engineer & Tester</div>
                         <div class="rack-uexp">3+ YEARS</div>
                         <div class="rack-uskills"><span class="rack-uskill">QA</span><span class="rack-uskill">Testing</span><span class="rack-uskill">Bug Tracking</span></div>
-                        <a href="https://www.linkedin.com/in/chshehrozshafiq/" target="_blank" class="rack-ulink"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                    <div class="rack-unit" style="--ru-color:#f093fb">
-                        <div class="rack-unit-leds"><div class="rack-unit-led"></div><div class="rack-unit-led"></div><div class="rack-unit-led"></div></div>
-                        <div class="rack-avatar-container">
-                            <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=150&q=80" alt="Bilawal" class="rack-avatar">
-                            <div class="rack-avatar-glow"></div>
-                        </div>
-                        <div class="rack-ubadge">Design</div>
-                        <div class="rack-uname">Bilawal</div>
-                        <div class="rack-utitle">Graphic Designer</div>
-                        <div class="rack-uexp">3+ YEARS</div>
-                        <div class="rack-uskills"><span class="rack-uskill">UI Design</span><span class="rack-uskill">Branding</span><span class="rack-uskill">Figma</span></div>
-                        <a href="https://www.linkedin.com/in/chshehrozshafiq/" target="_blank" class="rack-ulink"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="rack-ulink"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
             </div>
@@ -400,14 +527,13 @@
                         </a>
                         <p style="margin-bottom: 1.5rem;">Building the future, one product at a time. Broad Solution Tech is a
                             focused software studio dedicated to excellence in digital craftsmanship.</p>
-                        <a href="mailto:broadsolutiontech279@gmail.com" class="footer-email-link">
+                        <a href="mailto:hello@broadsolutiontech.com" class="footer-email-link">
                             <i class="fas fa-envelope"></i>
-                            broadsolutiontech279@gmail.com
+                            hello@broadsolutiontech.com
                         </a>
                         <div class="social-links" style="margin-top: 2rem;">
                             <a href="https://www.linkedin.com/in/chshehrozshafiq/" target="_blank" class="social-link"><i class="fab fa-linkedin-in"></i></a>
                             <a href="https://github.com/shehroz03" target="_blank" class="social-link"><i class="fab fa-github"></i></a>
-                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
                             <a href="https://www.instagram.com/broadsolutiontechh/" target="_blank" class="social-link"><i class="fab fa-instagram"></i></a>
                         </div>
                     </div>
@@ -420,7 +546,8 @@
                             <li><a href="reviews.html">Reviews</a></li>
                             <li><a href="about.html">Team</a></li>
                             <li><a href="contact.html">Contact</a></li>
-                        </ul>
+                                                    <li><a href="https://project.broadsolutiontech.com/" target="_blank" style="color: var(--accent-secondary); font-weight: 700;"><i class="fas fa-rocket" style="margin-right: 5px;"></i>Order Project</a></li>
+</ul>
                     </div>
                     <div class="footer-col">
                         <h4>Expertise</h4>
@@ -445,8 +572,8 @@
                 <div class="footer-bottom">
                     <p>&copy; 2026 Broad Solution Tech. All rights reserved.</p>
                     <div class="footer-legal">
-                        <a href="#" style="margin-right: 1.5rem;">Privacy Policy</a>
-                        <a href="#">Terms of Service</a>
+                        <a href="privacy-policy.html" style="margin-right: 1.5rem;">Privacy Policy</a>
+                        <a href="terms-of-service.html">Terms of Service</a>
                     </div>
                 </div>
             </div>

@@ -10,7 +10,9 @@ export default defineConfig({
         contact: resolve(__dirname, 'contact.html'),
         ourWork: resolve(__dirname, 'our-work.html'),
         reviews: resolve(__dirname, 'reviews.html'),
-        technology: resolve(__dirname, 'technology.html')
+        technology: resolve(__dirname, 'technology.html'),
+        privacyPolicy: resolve(__dirname, 'privacy-policy.html'),
+        termsOfService: resolve(__dirname, 'terms-of-service.html')
       }
     }
   }
