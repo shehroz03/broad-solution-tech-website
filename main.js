@@ -158,7 +158,7 @@ const projectData = {
         features: ["Real-time posts and stories", "Follow/unfollow system", "In-app messaging", "Push notifications", "Admin dashboard"],
         tech: { frontend: "React Native + React", backend: "Node.js + Express", database: "Firebase + Firestore" },
         tags: ["Social", "Mobile", "Real-time"],
-        images: ["./assets/images/projects/socialvibing.jpg.png", "./assets/images/projects/socialvibing1.jpeg", "./assets/images/projects/socialvibing2.jpeg"],
+        images: ["./public/assets/images/projects/socialvibing.jpg.png", "./public/assets/images/projects/socialvibing1.jpeg", "./public/assets/images/projects/socialvibing2.jpeg"],
         challenge: "SaaS media platforms require absolute responsiveness, zero-lag messaging, and rapid rendering under heavy simultaneous media uploads — but typical server configurations balloon in cost rapidly with heavy database write operations at scale.",
         solution: "Designed a premium Flutter mobile ecosystem alongside a highly optimized Node.js back-end, leveraging Firebase Cloud Firestore with atomic counts, automatic batch writes, and lazy-loading media pipelines to maintain low memory footprints while maximizing throughput.",
         result: "Achieved sub-100ms real-time chat latency and near-instant media loading across the mobile apps. Reduced data-transfer overheads by approximately 52%, allowing the platform infrastructure to scale smoothly even during aggressive marketing campaigns and user surges.",
@@ -174,7 +174,7 @@ const projectData = {
         features: ["Tour browsing and booking", "Custom itinerary planning", "Real-time availability", "Payment integration", "Review system"],
         tech: { frontend: "Flutter", backend: "Node.js", database: "MongoDB" },
         tags: ["Travel", "Booking", "Flutter"],
-        images: ["./assets/images/projects/tourease.jpg", "./assets/images/projects/tourease1.jpg", "./assets/images/projects/tourease2.jpg"],
+        images: ["./public/assets/images/projects/tourease.jpg", "./public/assets/images/projects/tourease1.jpg", "./public/assets/images/projects/tourease2.jpg"],
         challenge: "Dynamic local travel agencies struggle to automate complex, fully customisable itineraries across shifting multi-vendor slots, fluctuating pricing parameters, and labour-intensive manual reservation workflows that create errors and lost revenue.",
         solution: "Engineered an automated route-mapping and multi-vendor scheduling system using Dart/Flutter for the front-end. Built custom state machines for booking slot management and integrated secure payment gateways that verify reservations in real-time against live vendor availability APIs.",
         result: "Eliminated approximately 70% of manual booking interventions for administrative staff, freeing over 30 hours per week for the operations team. Successfully increased the checkout conversion rate by 35% within the first three months of public launch.",
@@ -186,7 +186,7 @@ const projectData = {
         features: ["High-res art previews", "Secure payment gateway", "Artist profiles", "Category-based search", "Order tracking"],
         tech: { frontend: "React + Tailwind", backend: "Node.js", database: "PostgreSQL" },
         tags: ["Art", "Marketplace", "Design"],
-        images: ["./assets/images/projects/artgallery.png", "./assets/images/projects/artgallery1.png", "./assets/images/projects/artgallery2.png"],
+        images: ["./public/assets/images/projects/artgallery.png", "./public/assets/images/projects/artgallery1.png", "./public/assets/images/projects/artgallery2.png"],
         actions: [{ label: "Visit Gallery", icon: "fas fa-external-link-alt", link: "#" }, { label: "View Portfolio", icon: "fas fa-briefcase", link: "#" }]
     },
     scholariq: {
@@ -195,7 +195,7 @@ const projectData = {
         features: ["AI scholarship matching", "Fraud detection system", "Application tracking", "Deadline reminders", "University database"],
         tech: { frontend: "Next.js", backend: "Python + FastAPI", database: "PostgreSQL + Supabase" },
         tags: ["AI", "Education", "Next.js"],
-        images: ["./assets/images/projects/scholariq.png", "./assets/images/projects/scholariq1.png", "./assets/images/projects/scholariq.png"],
+        images: ["./public/assets/images/projects/scholariq.png", "./public/assets/images/projects/scholariq1.png", "./public/assets/images/projects/scholariq.png"],
         challenge: "Students face a highly fragmented and insecure global scholarship landscape cluttered with broken links, confusing eligibility requirements, and predatory scam portals designed specifically to harvest sensitive personal data from vulnerable applicants.",
         solution: "Engineered a lightning-fast semantic matchmaking portal using Next.js and Supabase as the backbone. Integrated a custom NLP classification system built in Python + FastAPI that automatically screens scholarship listings for legitimacy — scoring each opportunity against historical trust parameters and live cross-referencing.",
         result: "Successfully processed and screened 5,000+ scholarship listings during the pilot phase, with the AI model flagging approximately 40% of scraped entries as high-risk or fraudulent. Student applicants can now identify verified, safe scholarship opportunities in under 30 seconds.",
@@ -208,12 +208,12 @@ const projectData = {
         tech: { frontend: "Flutter", backend: "Node.js + Express", database: "Supabase" },
         tags: ["Education", "Kids", "Gamified", "Mobile"],
         images: [
-            "./assets/images/projects/painting.jpeg",
-            "./assets/images/projects/quiz.jpeg",
-            "./assets/images/projects/tracing.jpeg",
-            "./assets/images/projects/carrot.jpeg",
-            "./assets/images/projects/apple.jpeg",
-            "./assets/images/projects/home.jpeg"
+            "./public/assets/images/projects/painting.jpeg",
+            "./public/assets/images/projects/quiz.jpeg",
+            "./public/assets/images/projects/tracing.jpeg",
+            "./public/assets/images/projects/carrot.jpeg",
+            "./public/assets/images/projects/apple.jpeg",
+            "./public/assets/images/projects/home.jpeg"
         ],
         actions: [
             { label: "Join Testing", icon: "fab fa-google-play", link: "#" },
