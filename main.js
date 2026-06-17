@@ -187,6 +187,9 @@ const projectData = {
         tech: { frontend: "React + Tailwind", backend: "Node.js", database: "PostgreSQL" },
         tags: ["Art", "Marketplace", "Design"],
         images: ["./public/assets/images/projects/artgallery.png", "./public/assets/images/projects/artgallery1.png", "./public/assets/images/projects/artgallery2.png"],
+        challenge: "Independent artists were relying on Instagram DMs and PDF catalogues to sell original work — no secure payments, no order tracking, and no way for collectors to preview artwork at full resolution before buying. Transactions fell through regularly.",
+        solution: "Built a full React + Node.js marketplace with Stripe integration, high-resolution lazy-loaded artwork previews, and a structured artist profile system. Deployed on PostgreSQL with a fast search index across categories, medium, and price ranges.",
+        result: "Artists on the platform reported a measurable reduction in back-and-forth with buyers. The checkout flow converted first-time visitors into paying customers without any manual follow-up, and artwork browsing became the primary discovery channel replacing Instagram referrals.",
         actions: [{ label: "Visit Gallery", icon: "fas fa-external-link-alt", link: "#" }, { label: "View Portfolio", icon: "fas fa-briefcase", link: "#" }]
     },
     scholariq: {
@@ -217,6 +220,23 @@ const projectData = {
         ],
         actions: [
             { label: "Join Testing", icon: "fab fa-google-play", link: "#" },
+            { label: "View Case Study", icon: "fas fa-file-alt", link: "#" }
+        ]
+    },
+    voteoffside: {
+        title: "Voteoffside", status: "LIVE", statusClass: "live",
+        description: "A dynamic sports prediction platform allowing fans to predict match outcomes, track scores, and compete on global leaderboards. Built for high engagement during major sporting events like the World Cup.",
+        features: ["Live match predictions", "Global user leaderboards", "Real-time statistics updates", "Social sharing and competitions", "Responsive mobile-first design"],
+        tech: { frontend: "React", backend: "Node.js", database: "MongoDB" },
+        tags: ["Sports", "Prediction", "Web App"],
+        images: [
+            "./public/assets/images/projects/voteoffside%20(1).png",
+            "./public/assets/images/projects/voteoffside%20(2).png",
+            "./public/assets/images/projects/voteoffside%20(3).png",
+            "./public/assets/images/projects/voteoffside%20(4).png"
+        ],
+        actions: [
+            { label: "Visit Website", icon: "fas fa-external-link-alt", link: "#" },
             { label: "View Case Study", icon: "fas fa-file-alt", link: "#" }
         ]
     }
