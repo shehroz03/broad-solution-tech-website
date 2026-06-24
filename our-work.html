@@ -1,10 +1,13 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Work | Broad Solution Tech</title>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.setAttribute('data-theme', 'light'); }
+    </script>
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -17,7 +20,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: #05000f;
+            background: var(--bg-color);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -30,7 +33,7 @@
         .loader-logo {
             font-size: 2.5rem;
             font-weight: 800;
-            color: #fff;
+            color: var(--text-primary);
             margin-bottom: 20px;
             letter-spacing: 5px;
             animation: pulse 1.5s infinite;
@@ -90,7 +93,8 @@
                     <a href="about.html">Team</a>
 
                     <a href="contact.html">Contact</a>
-                                    <a href="https://project.broadsolutiontech.com/" target="_blank" class="nav-cta-btn"><i class="fas fa-rocket"></i> Order Project</a>
+                                    <button class="theme-toggle-btn" aria-label="Toggle Theme"><i class="fas fa-sun"></i></button>
+                <a href="https://project.broadsolutiontech.com/" target="_blank" class="nav-cta-btn"><i class="fas fa-rocket"></i> Order Project</a>
 </div>
             </div>
         </nav>
@@ -252,8 +256,8 @@
                                 <p class="step-desc">We dive deep into your vision, target audience, and business goals to map out a clear roadmap for success.</p>
                                 <div class="feat-list">
                                     <div class="feat-item"><div class="feat-icon">🎯</div> Requirement Analysis</div>
-                                    <div class="feat-item"><div class="feat-icon">🗺️</div> Strategy Mapping</div>
-                                    <div class="feat-item"><div class="feat-icon">🔍</div> Market Research</div>
+                                    <div class="feat-item"><div class="feat-icon">ðŸ—ºï¸</div> Strategy Mapping</div>
+                                    <div class="feat-item"><div class="feat-icon">ðŸ”</div> Market Research</div>
                                 </div>
                             </div>
                         </div>
@@ -280,9 +284,9 @@
                                 <h3 class="step-title">UX/UI Craftsmanship</h3>
                                 <p class="step-desc">Building intuitive, visually stunning interfaces that provide an elite user experience and reflect your brand's identity.</p>
                                 <div class="feat-list">
-                                    <div class="feat-item"><div class="feat-icon">🎨</div> High-End UI Design</div>
-                                    <div class="feat-item"><div class="feat-icon">📐</div> Wireframing</div>
-                                    <div class="feat-item"><div class="feat-icon">🖥️</div> Interactive Prototyping</div>
+                                    <div class="feat-item"><div class="feat-icon">ðŸŽ¨</div> High-End UI Design</div>
+                                    <div class="feat-item"><div class="feat-icon">ðŸ“</div> Wireframing</div>
+                                    <div class="feat-item"><div class="feat-icon">ðŸ–¥ï¸</div> Interactive Prototyping</div>
                                 </div>
                             </div>
                         </div>
@@ -310,8 +314,8 @@
                                 <p class="step-desc">Scaling your product with clean, efficient code and modern tech stacks built for performance and security.</p>
                                 <div class="feat-list">
                                     <div class="feat-item"><div class="feat-icon">💻</div> Full Stack Development</div>
-                                    <div class="feat-item"><div class="feat-icon">🔄</div> CI/CD Integration</div>
-                                    <div class="feat-item"><div class="feat-icon">🧪</div> QA & Testing</div>
+                                    <div class="feat-item"><div class="feat-icon">ðŸ”„</div> CI/CD Integration</div>
+                                    <div class="feat-item"><div class="feat-icon">ðŸ§ª</div> QA & Testing</div>
                                 </div>
                             </div>
                         </div>
@@ -537,7 +541,7 @@
             width: 60px;
             height: 60px;
             background: #25d366;
-            color: #fff;
+            color: var(--text-primary);
             border-radius: 50%;
             text-align: center;
             font-size: 34px;
@@ -558,7 +562,7 @@
             transform: scale(1.15) translateY(-5px);
             background: #20ba5a;
             box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
-            color: #fff;
+            color: var(--text-primary);
         }
 
         .whatsapp-float:hover i {
@@ -595,7 +599,7 @@
             right: 75px;
             background: rgba(10, 10, 20, 0.9);
             border: 1px solid rgba(139, 92, 246, 0.3);
-            color: #fff;
+            color: var(--text-primary);
             padding: 8px 16px;
             border-radius: 8px;
             font-size: 13px;
@@ -636,5 +640,6 @@
     </a>
 </body>
 </html>
+
 
 

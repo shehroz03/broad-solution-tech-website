@@ -1,9 +1,12 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Technologies | Broad Solution Tech</title>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.setAttribute('data-theme', 'light'); }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -11,7 +14,7 @@
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         :root {
-            --bg: #05000f;
+            --bg: var(--bg-color);
             --glass: rgba(255, 255, 255, 0.03);
             --glass-b: rgba(255, 255, 255, 0.07);
             --text: rgba(255, 255, 255, 0.88);
@@ -32,7 +35,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: #05000f;
+            background: var(--bg-color);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -45,7 +48,7 @@
         .loader-logo {
             font-size: 2.5rem;
             font-weight: 800;
-            color: #fff;
+            color: var(--text-primary);
             margin-bottom: 20px;
             letter-spacing: 5px;
             animation: pulse 1.5s infinite;
@@ -107,7 +110,7 @@
         .logo { display: flex; align-items: center; gap: 1rem; font-size: 1.5rem; font-weight: 800; color: white; cursor: none; }
         .logo-icon { width: 32px; height: 32px; background: #6B2FD9; border-radius: 6px; display: flex; align-items: center; justify-content: center; }
         .nav-links { display: flex; gap: 2.5rem; }
-        .nav-links a { color: rgba(255, 255, 255, 0.6); font-size: 0.9rem; font-weight: 500; transition: color 0.3s; cursor: none; }
+        .nav-links a { color: var(--text-secondary); font-size: 0.9rem; font-weight: 500; transition: color 0.3s; cursor: none; }
         .nav-links a:hover, .nav-links a.active { color: #8B5CF6; position: relative; }
         .nav-links a.active::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 100%; height: 2px; background: #8B5CF6; box-shadow: 0 0 10px #8B5CF6; }
 
@@ -115,7 +118,7 @@
         #pf { position: fixed; top: 0; left: 0; height: 2px; background: var(--cursor-color); z-index: 2000; width: 0%; transition: width 0.1s, background 0.3s; box-shadow: 0 0 10px var(--cursor-color); }
         .snav { position: fixed; right: 24px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 16px; z-index: 100; }
         .sd { width: 8px; height: 8px; border-radius: 50%; background: transparent; border: 1px solid rgba(255,255,255,0.2); cursor: none; position: relative; transition: all 0.3s; }
-        .sd::before { content: attr(data-l); position: absolute; right: 20px; top: 50%; transform: translateY(-50%); font-family: var(--ff-m); font-size: 10px; opacity: 0; color: rgba(255,255,255,0.5); text-transform: uppercase; white-space: nowrap; pointer-events: none; transition: opacity 0.2s; letter-spacing: 1px; }
+        .sd::before { content: attr(data-l); position: absolute; right: 20px; top: 50%; transform: translateY(-50%); font-family: var(--ff-m); font-size: 10px; opacity: 0; color: var(--text-secondary); text-transform: uppercase; white-space: nowrap; pointer-events: none; transition: opacity 0.2s; letter-spacing: 1px; }
         .sd:hover::before { opacity: 1; color: var(--text); }
         .sd.on { background: var(--c); border-color: var(--c); box-shadow: 0 0 12px var(--c); transform: scale(1.4); }
 
@@ -128,11 +131,11 @@
         .btn-primary { background: #6B2FD9; color: white; border: none; }
         .btn-primary:hover { background: #8B5CF6; box-shadow: 0 0 15px #6B2FD9; transform: translateY(-2px); }
         .btn-outline { background: transparent; color: white; border: 1px solid rgba(255, 255, 255, 0.3); }
-        .btn-outline:hover { background: rgba(255, 255, 255, 0.1); transform: translateY(-2px); border-color: rgba(255,255,255,0.5); }
+        .btn-outline:hover { background: rgba(255, 255, 255, 0.1); transform: translateY(-2px); border-color: var(--text-secondary); }
 
         /* Hero */
         .hero { min-height: 100vh; padding-top: 100px; justify-content: center; text-align: center; }
-        .hh { font-family: var(--ff-d); font-size: clamp(40px, 6vw, 76px); font-weight: 800; line-height: 1.1; letter-spacing: -2px; margin-bottom: 24px; color: #fff; }
+        .hh { font-family: var(--ff-d); font-size: clamp(40px, 6vw, 76px); font-weight: 800; line-height: 1.1; letter-spacing: -2px; margin-bottom: 24px; color: var(--text-primary); }
         .hs { font-size: clamp(16px, 1.8vw, 18px); color: var(--muted); max-width: 540px; line-height: 1.6; margin-bottom: 40px; }
         .hero-btns { display: flex; gap: 16px; justify-content: center; }
 
@@ -146,7 +149,7 @@
         /* Orbits */
         .oc { position: relative; width: 100%; display: flex; align-items: center; justify-content: center; padding: 2rem 0; }
         .os { position: relative; width: clamp(260px, 35vw, 400px); aspect-ratio: 1; }
-        .oh { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 86px; height: 86px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: radial-gradient(circle at center, rgba(255,255,255,0.1), transparent); border: 1px solid var(--c); box-shadow: 0 0 30px inset rgba(255,255,255,0.05); }
+        .oh { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 86px; height: 86px; border-color: var(--glass-border); }
         .oh i { font-size: 26px; margin-bottom: 4px; font-style: normal; }
         .oh span { font-family: var(--ff-m); font-size: 9px; font-weight: 700; color: var(--c); text-transform: uppercase; letter-spacing: 1px; }
 
@@ -160,25 +163,25 @@
         .ob { position: absolute; width: 48px; height: 48px; border-radius: 50%; background: var(--glass); border: 1px solid var(--glass-b); display: flex; align-items: center; justify-content: center; backdrop-filter: blur(8px); box-shadow: 0 4px 16px rgba(0,0,0,0.3); transition: transform 0.3s, border-color 0.3s; will-change: left, top; pointer-events: auto; cursor: none; }
         .ob i { font-size: 20px; font-style: normal; }
         .ob:hover { transform: scale(1.15) translateY(-2px); border-color: var(--c); box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
-        .ob::after { content: attr(data-t); position: absolute; top: -26px; font-family: var(--ff-m); font-size: 10px; color: #fff; white-space: nowrap; opacity: 0; transition: 0.3s; background: rgba(0,0,0,0.8); padding: 4px 8px; border-radius: 4px; pointer-events: none; border: 1px solid var(--glass-b); }
+        .ob::after { content: attr(data-t); position: absolute; top: -26px; font-family: var(--ff-m); font-size: 10px; color: var(--text-primary); white-space: nowrap; opacity: 0; transition: 0.3s; background: rgba(0,0,0,0.8); padding: 4px 8px; border-radius: 4px; pointer-events: none; border: 1px solid var(--glass-b); }
         .ob:hover::after { opacity: 1; top: -32px; }
 
         /* Text Area */
         .tc { display: flex; flex-direction: column; }
         .te { font-family: var(--ff-m); font-size: 11px; color: var(--c); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; display: flex; align-items: center; gap: 14px; }
         .te::before { content: ''; width: 40px; height: 1px; background: var(--c); opacity: 0.5; }
-        .tt { font-family: var(--ff-d); font-size: clamp(28px, 4vw, 46px); font-weight: 700; line-height: 1.1; margin-bottom: 20px; color: #fff; }
+        .tt { font-family: var(--ff-d); font-size: clamp(28px, 4vw, 46px); font-weight: 700; line-height: 1.1; margin-bottom: 20px; color: var(--text-primary); }
         .td { color: var(--muted); font-size: clamp(15px, 1.3vw, 17px); line-height: 1.7; margin-bottom: 36px; }
 
         .tps { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 40px; }
-        .tp { font-family: var(--ff-m); font-size: 11px; padding: 8px 16px; background: var(--glass); border: 1px solid var(--glass-b); border-radius: 24px; color: rgba(255,255,255,0.7); display: flex; align-items: center; gap: 8px; transition: 0.3s; cursor: none; }
+        .tp { font-family: var(--ff-m); font-size: 11px; padding: 8px 16px; background: var(--glass); border: 1px solid var(--glass-b); border-radius: 24px; color: var(--text-secondary); display: flex; align-items: center; gap: 8px; transition: 0.3s; cursor: none; }
         .tp::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--c); opacity: 0.6; transition: 0.3s; }
-        .tp:hover { background: rgba(255,255,255,0.08); color: #fff; transform: translateY(-2px); border-color: rgba(255,255,255,0.2); }
+        .tp:hover { background: rgba(255,255,255,0.08); color: var(--text-primary); transform: translateY(-2px); border-color: var(--text-secondary); }
         .tp:hover::before { opacity: 1; box-shadow: 0 0 10px var(--c); }
 
         .fl { display: flex; flex-direction: column; gap: 14px; }
         .fi { display: flex; align-items: center; gap: 16px; padding: 16px 20px; background: var(--glass); border: 1px solid var(--glass-b); border-radius: 8px; font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.85); transition: 0.3s; border-left: 3px solid transparent; cursor: none; }
-        .fi:hover { background: rgba(255,255,255,0.05); transform: translateX(6px); border-left-color: var(--c); border-right-color: rgba(255,255,255,0.1); }
+        .fi:hover { background: var(--glass-bg); transform: translateX(6px); border-left-color: var(--c); border-right-color: var(--text-secondary); }
         .fic { font-size: 18px; font-style: normal; }
 
         /* Stats */
@@ -188,7 +191,7 @@
         .ig { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; max-width: 1100px; width: 90%; margin: 0 auto; }
         .ic { background: var(--glass); border: 1px solid var(--glass-b); border-radius: 16px; padding: 40px 24px; text-align: center; transition: 0.4s; }
         .ic:hover { transform: translateY(-6px); background: rgba(255,255,255,0.06); border-color: var(--c); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
-        .ic-n { font-family: var(--ff-d); font-size: 56px; font-weight: 800; color: #fff; margin-bottom: 10px; display: block; line-height: 1; }
+        .ic-n { font-family: var(--ff-d); font-size: 56px; font-weight: 800; color: var(--text-primary); margin-bottom: 10px; display: block; line-height: 1; }
         .ic-l { font-family: var(--ff-m); font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 2px; }
 
         @media (max-width: 900px) {
@@ -202,7 +205,7 @@
         /* Footer Styling */
         footer { border-top: 1px solid var(--glass-b); padding: 5rem 0 2rem; margin-top: 4rem; position: relative; z-index: 10; background: rgba(5, 0, 15, 0.9); }
         .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; margin-bottom: 4rem; max-width: 1100px; margin-left: auto; margin-right: auto; padding: 0 2rem; }
-        .footer-col h4 { color: #fff; margin-bottom: 1.5rem; font-family: var(--ff-d); font-size: 1.2rem; }
+        .footer-col h4 { color: var(--text-primary); margin-bottom: 1.5rem; font-family: var(--ff-d); font-size: 1.2rem; }
         .footer-col p { color: var(--muted); font-size: 0.95rem; line-height: 1.6; }
         .footer-col ul { list-style: none; }
         .footer-col ul li { margin-bottom: 0.8rem; }
@@ -211,17 +214,17 @@
         
         .footer-bottom { border-top: 1px solid var(--glass-b); color: var(--muted); display: flex; justify-content: space-between; align-items: center; padding: 2rem 2rem 0; max-width: 1100px; margin: 0 auto; font-size: 0.9rem; }
         .footer-legal a { margin-left: 1.5rem; color: var(--muted); transition: 0.3s; }
-        .footer-legal a:hover { color: #fff; }
+        .footer-legal a:hover { color: var(--text-primary); }
 
         .social-links { display: flex; gap: 1rem; margin-top: 1.5rem; }
         .social-link { width: 40px; height: 40px; border-radius: 8px; border: 1px solid var(--glass-b); display: flex; align-items: center; justify-content: center; transition: all 0.3s; color: var(--muted); }
-        .social-link:hover { background: var(--c); border-color: var(--c); color: #fff; transform: translateY(-3px); }
+        .social-link:hover { background: var(--c); border-color: var(--c); color: var(--text-primary); transform: translateY(-3px); }
 
         .footer-email-link {
             display: inline-flex;
             align-items: center;
             gap: 0.8rem;
-            color: #fff;
+            color: var(--text-primary);
             font-weight: 600;
             margin-top: 1rem;
             padding: 0.6rem 1.2rem;
@@ -233,8 +236,8 @@
             font-size: 0.9rem;
         }
         .footer-email-link i { color: var(--c); font-size: 1.1rem; transition: transform 0.4s; }
-        .footer-email-link:hover { background: var(--c); border-color: var(--c); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(107, 47, 217, 0.3); color: #fff; }
-        .footer-email-link:hover i { transform: rotate(15deg) scale(1.2); color: #fff; }
+        .footer-email-link:hover { background: var(--c); border-color: var(--c); transform: translateY(-3px); box-shadow: 0 10px 20px rgba(107, 47, 217, 0.3); color: var(--text-primary); }
+        .footer-email-link:hover i { transform: rotate(15deg) scale(1.2); color: var(--text-primary); }
 
         @media (max-width: 900px) {
             .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
@@ -274,7 +277,8 @@
                 <a href="about.html">Team</a>
 
                 <a href="contact.html">Contact</a>
-                            <a href="https://project.broadsolutiontech.com/" target="_blank" class="nav-cta-btn"><i class="fas fa-rocket"></i> Order Project</a>
+                            <button class="theme-toggle-btn" aria-label="Toggle Theme"><i class="fas fa-sun"></i></button>
+                <a href="https://project.broadsolutiontech.com/" target="_blank" class="nav-cta-btn"><i class="fas fa-rocket"></i> Order Project</a>
 </div>
         </div>
     </nav>
@@ -324,8 +328,8 @@
                 </div>
                 <div class="fl">
                     <div class="fi"><i class="fic">⚡</i>Blazing-fast SSR &amp; SSG</div>
-                    <div class="fi"><i class="fic">🎨</i>Tailwind Utility Styling</div>
-                    <div class="fi"><i class="fic">♿</i>WCAG 2.1 Accessibility</div>
+                    <div class="fi"><i class="fic">ðŸŽ¨</i>Tailwind Utility Styling</div>
+                    <div class="fi"><i class="fic">â™¿</i>WCAG 2.1 Accessibility</div>
                 </div>
             </div>
         </div>
@@ -347,16 +351,16 @@
                     <div class="tp">Express</div>
                 </div>
                 <div class="fl">
-                    <div class="fi"><i class="fic">🔌</i>RESTful &amp; GraphQL APIs</div>
-                    <div class="fi"><i class="fic">🔄</i>Microservices Architecture</div>
-                    <div class="fi"><i class="fic">📈</i>Auto-scaling Infrastructure</div>
+                    <div class="fi"><i class="fic">ðŸ”Œ</i>RESTful &amp; GraphQL APIs</div>
+                    <div class="fi"><i class="fic">ðŸ”„</i>Microservices Architecture</div>
+                    <div class="fi"><i class="fic">ðŸ“ˆ</i>Auto-scaling Infrastructure</div>
                 </div>
             </div>
             <div class="oc">
                 <div class="os">
                     <svg class="or1"><circle cx="50%" cy="50%" r="48%"/></svg>
                     <svg class="or2"><circle cx="50%" cy="50%" r="35%"/></svg>
-                    <div class="oh"><i>⚙️</i><span>Back</span></div>
+                    <div class="oh"><i>âš™ï¸</i><span>Back</span></div>
                     <div class="ois" id="ois-s2"></div>
                 </div>
             </div>
@@ -372,7 +376,7 @@
                 <div class="os">
                     <svg class="or1"><circle cx="50%" cy="50%" r="48%"/></svg>
                     <svg class="or2"><circle cx="50%" cy="50%" r="35%"/></svg>
-                    <div class="oh"><i>🗄️</i><span>Data</span></div>
+                    <div class="oh"><i>ðŸ—„ï¸</i><span>Data</span></div>
                     <div class="ois" id="ois-s3"></div>
                 </div>
             </div>
@@ -388,8 +392,8 @@
                 </div>
                 <div class="fl">
                     <div class="fi"><i class="fic">⚡</i>Real-time Sync &amp; PubSub</div>
-                    <div class="fi"><i class="fic">🛡️</i>Row-Level Security (RLS)</div>
-                    <div class="fi"><i class="fic">☁️</i>Multi-cloud Deployment</div>
+                    <div class="fi"><i class="fic">ðŸ›¡ï¸</i>Row-Level Security (RLS)</div>
+                    <div class="fi"><i class="fic">â˜ï¸</i>Multi-cloud Deployment</div>
                 </div>
             </div>
         </div>
@@ -412,15 +416,15 @@
                 </div>
                 <div class="fl">
                     <div class="fi"><i class="fic">📱</i>iOS &amp; Android — one codebase</div>
-                    <div class="fi"><i class="fic">🤖</i>LLM-powered autonomous agents</div>
-                    <div class="fi"><i class="fic">🧠</i>RAG pipelines &amp; vector search</div>
+                    <div class="fi"><i class="fic">ðŸ¤–</i>LLM-powered autonomous agents</div>
+                    <div class="fi"><i class="fic">ðŸ§ </i>RAG pipelines &amp; vector search</div>
                 </div>
             </div>
             <div class="oc">
                 <div class="os">
                     <svg class="or1"><circle cx="50%" cy="50%" r="48%"/></svg>
                     <svg class="or2"><circle cx="50%" cy="50%" r="35%"/></svg>
-                    <div class="oh"><i>🤖</i><span>Mobile/AI</span></div>
+                    <div class="oh"><i>ðŸ¤–</i><span>Mobile/AI</span></div>
                     <div class="ois" id="ois-s4"></div>
                 </div>
             </div>
@@ -436,7 +440,7 @@
                 <div class="os">
                     <svg class="or1"><circle cx="50%" cy="50%" r="48%"/></svg>
                     <svg class="or2"><circle cx="50%" cy="50%" r="35%"/></svg>
-                    <div class="oh"><i>🛡️</i><span>Secure</span></div>
+                    <div class="oh"><i>ðŸ›¡ï¸</i><span>Secure</span></div>
                     <div class="ois" id="ois-s5"></div>
                 </div>
             </div>
@@ -451,8 +455,8 @@
                     <div class="tp">Cyber Defense</div>
                 </div>
                 <div class="fl">
-                    <div class="fi"><i class="fic">🔍</i>Vulnerability Assessment</div>
-                    <div class="fi"><i class="fic">🔐</i>Zero-Trust Architecture</div>
+                    <div class="fi"><i class="fic">ðŸ”</i>Vulnerability Assessment</div>
+                    <div class="fi"><i class="fic">ðŸ”</i>Zero-Trust Architecture</div>
                     <div class="fi"><i class="fic">📊</i>Real-time Threat Monitoring</div>
                 </div>
             </div>
@@ -555,34 +559,34 @@
         // ORBIT BUBBLES LOGIC
         const orbs = {
             s1: [
-                {e:'⚛️', t:'React', a:0, s: 0.005, r: 48},
-                {e:'▲', t:'Next.js', a:180, s: 0.005, r: 48},
+                {e:'âš›ï¸', t:'React', a:0, s: 0.005, r: 48},
+                {e:'â–²', t:'Next.js', a:180, s: 0.005, r: 48},
                 {e:'TS', t:'TypeScript', a:90, s: -0.006, r: 35},
                 {e:'✨', t:'Motion', a:270, s: -0.006, r: 35}
             ],
             s2: [
-                {e:'🟢', t:'Node.js', a:45, s: 0.004, r: 48},
-                {e:'🐍', t:'Python', a:225, s: 0.004, r: 48},
+                {e:'ðŸŸ¢', t:'Node.js', a:45, s: 0.004, r: 48},
+                {e:'ðŸ', t:'Python', a:225, s: 0.004, r: 48},
                 {e:'🚀', t:'FastAPI', a:135, s: -0.005, r: 35},
-                {e:'🚂', t:'Express', a:315, s: -0.005, r: 35}
+                {e:'ðŸš‚', t:'Express', a:315, s: -0.005, r: 35}
             ],
             s3: [
-                {e:'🔥', t:'Firebase', a:20, s: 0.005, r: 48},
-                {e:'🍃', t:'MongoDB', a:200, s: 0.005, r: 48},
+                {e:'ðŸ”¥', t:'Firebase', a:20, s: 0.005, r: 48},
+                {e:'ðŸƒ', t:'MongoDB', a:200, s: 0.005, r: 48},
                 {e:'⚡', t:'Supabase', a:110, s: -0.007, r: 35},
-                {e:'🐘', t:'Postgres', a:290, s: -0.007, r: 35}
+                {e:'ðŸ˜', t:'Postgres', a:290, s: -0.007, r: 35}
             ],
             s4: [
                 {e:'📱', t:'React Native', a:60, s: 0.006, r: 48},
-                {e:'🐦', t:'Flutter', a:240, s: 0.006, r: 48},
-                {e:'🤖', t:'OpenAI', a:150, s: -0.005, r: 35},
-                {e:'🔗', t:'LangChain', a:330, s: -0.005, r: 35}
+                {e:'ðŸ¦', t:'Flutter', a:240, s: 0.006, r: 48},
+                {e:'ðŸ¤–', t:'OpenAI', a:150, s: -0.005, r: 35},
+                {e:'ðŸ”—', t:'LangChain', a:330, s: -0.005, r: 35}
             ],
             s5: [
-                {e:'🛡️', t:'VAPT', a:10, s: 0.004, r: 48},
-                {e:'🔐', t:'Zero-Trust', a:190, s: 0.004, r: 48},
-                {e:'🔍', t:'Pen Testing', a:100, s: -0.006, r: 35},
-                {e:'🌐', t:'NetSec', a:280, s: -0.006, r: 35}
+                {e:'ðŸ›¡ï¸', t:'VAPT', a:10, s: 0.004, r: 48},
+                {e:'ðŸ”', t:'Zero-Trust', a:190, s: 0.004, r: 48},
+                {e:'ðŸ”', t:'Pen Testing', a:100, s: -0.006, r: 35},
+                {e:'ðŸŒ', t:'NetSec', a:280, s: -0.006, r: 35}
             ]
         };
 
@@ -690,7 +694,7 @@
             width: 60px;
             height: 60px;
             background: #25d366;
-            color: #fff;
+            color: var(--text-primary);
             border-radius: 50%;
             text-align: center;
             font-size: 34px;
@@ -711,7 +715,7 @@
             transform: scale(1.15) translateY(-5px);
             background: #20ba5a;
             box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
-            color: #fff;
+            color: var(--text-primary);
         }
 
         .whatsapp-float:hover i {
@@ -748,7 +752,7 @@
             right: 75px;
             background: rgba(10, 10, 20, 0.9);
             border: 1px solid rgba(139, 92, 246, 0.3);
-            color: #fff;
+            color: var(--text-primary);
             padding: 8px 16px;
             border-radius: 8px;
             font-size: 13px;
@@ -789,5 +793,6 @@
     </a>
 </body>
 </html>
+
 
 

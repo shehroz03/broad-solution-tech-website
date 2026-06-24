@@ -13,8 +13,10 @@ window.addEventListener('load', () => {
     setTimeout(() => {
         if (typeof VANTA !== 'undefined' && VANTA.BIRDS) {
             const isLowEnd = window.innerWidth < 768;
-            VANTA.BIRDS({
-                el: "#vanta-canvas",
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const vantaBgColor = currentTheme === 'light' ? 0xf8f9fc : 0x05000f;
+            window.vantaEffect = VANTA.BIRDS({
+                el: ".hero",
                 mouseControls: !isLowEnd,
                 touchControls: false,
                 gyroControls: false,
@@ -22,7 +24,7 @@ window.addEventListener('load', () => {
                 minWidth: 200.00,
                 scale: 1.00,
                 scaleMobile: 1.00,
-                backgroundColor: 0x05000f,
+                backgroundColor: vantaBgColor,
                 color1: 0x6b2fd9,
                 color2: 0x8b5cf6,
                 birdSize: isLowEnd ? 0.8 : 1.20,
@@ -35,6 +37,57 @@ window.addEventListener('load', () => {
             });
         }
     }, 1000);
+});
+
+// Theme Management
+const initTheme = () => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+    } else {
+        document.documentElement.removeAttribute('data-theme');
+    }
+    updateThemeIcons(savedTheme);
+};
+
+const updateThemeIcons = (theme) => {
+    document.querySelectorAll('.theme-toggle-btn i').forEach(icon => {
+        if (theme === 'light') {
+            icon.classList.remove('fa-sun');
+            icon.classList.add('fa-moon');
+        } else {
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+    });
+};
+
+const toggleTheme = () => {
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    const newTheme = isLight ? 'dark' : 'light';
+    
+    if (newTheme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+    } else {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'dark');
+    }
+    
+    updateThemeIcons(newTheme);
+    
+    if (window.vantaEffect) {
+        window.vantaEffect.setOptions({
+            backgroundColor: newTheme === 'light' ? 0xf8f9fc : 0x05000f
+        });
+    }
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+    initTheme();
+    document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
+        btn.addEventListener('click', toggleTheme);
+    });
 });
 
 // Optimized Scroll Handler
@@ -65,7 +118,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Reveal Animations (Intersection Observer)
+// Smooth Reveal Animations (Intersection Observer)
 const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -74,34 +127,34 @@ const observerOptions = {
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            if (entry.target.classList.contains('team-card-premium') || 
-                entry.target.classList.contains('project-card') ||
-                entry.target.classList.contains('testimonial-card') ||
-                entry.target.classList.contains('tech-box') ||
-                entry.target.classList.contains('stepsec') ||
-                entry.target.classList.contains('ov-card')) {
-                entry.target.classList.add('reveal');
-            } else {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
+            entry.target.classList.add('show');
+            entry.target.classList.add('reveal');
+        } else {
+            // Removes classes when out of view so it animates again on scroll
+            entry.target.classList.remove('show');
+            entry.target.classList.remove('reveal');
         }
     });
 }, observerOptions);
 
-document.querySelectorAll('section, .team-card-premium, .project-card, .testimonial-card, .tech-box, .stepsec, .ov-card').forEach((el, index) => {
+// Dynamically target all elements that should animate on scroll
+const animatedSelectors = 'h1, h2, h3, h4, p, .btn, .project-card, .team-card-premium, .testimonial-card, .tech-box, .stepsec, .ov-card, .deep-dive-card, .contact-card-premium, .stat-item, .founder-img';
+
+document.querySelectorAll(animatedSelectors).forEach((el, index) => {
+    // Avoid animating elements inside the nav and hero to keep initial load smooth
+    if (el.closest('nav') || el.closest('.hero')) return;
+    
+    el.classList.add('scroll-animate');
+    
+    // Add staggered delay for grid items to pop in sequentially
     if (el.classList.contains('team-card-premium') || 
         el.classList.contains('project-card') ||
-        el.classList.contains('testimonial-card') ||
         el.classList.contains('tech-box') ||
         el.classList.contains('stepsec') ||
         el.classList.contains('ov-card')) {
         el.style.transitionDelay = `${(index % 3) * 0.1}s`;
-    } else {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        el.style.transition = 'all 0.6s ease-out';
     }
+    
     observer.observe(el);
 });
 
@@ -158,7 +211,7 @@ const projectData = {
         features: ["Real-time posts and stories", "Follow/unfollow system", "In-app messaging", "Push notifications", "Admin dashboard"],
         tech: { frontend: "React Native + React", backend: "Node.js + Express", database: "Firebase + Firestore" },
         tags: ["Social", "Mobile", "Real-time"],
-        images: ["./assets/images/projects/socialvibing.jpg.png", "./assets/images/projects/socialvibing1.jpeg", "./assets/images/projects/socialvibing2.jpeg"],
+        images: ["/assets/images/projects/socialvibing.jpg.png", "/assets/images/projects/socialvibing1.jpeg", "/assets/images/projects/socialvibing2.jpeg"],
         challenge: "SaaS media platforms require absolute responsiveness, zero-lag messaging, and rapid rendering under heavy simultaneous media uploads — but typical server configurations balloon in cost rapidly with heavy database write operations at scale.",
         solution: "Designed a premium Flutter mobile ecosystem alongside a highly optimized Node.js back-end, leveraging Firebase Cloud Firestore with atomic counts, automatic batch writes, and lazy-loading media pipelines to maintain low memory footprints while maximizing throughput.",
         result: "Achieved sub-100ms real-time chat latency and near-instant media loading across the mobile apps. Reduced data-transfer overheads by approximately 52%, allowing the platform infrastructure to scale smoothly even during aggressive marketing campaigns and user surges.",
@@ -174,7 +227,7 @@ const projectData = {
         features: ["Tour browsing and booking", "Custom itinerary planning", "Real-time availability", "Payment integration", "Review system"],
         tech: { frontend: "Flutter", backend: "Node.js", database: "MongoDB" },
         tags: ["Travel", "Booking", "Flutter"],
-        images: ["./assets/images/projects/tourease.jpg", "./assets/images/projects/tourease1.jpg", "./assets/images/projects/tourease2.jpg"],
+        images: ["/assets/images/projects/tourease.jpg", "/assets/images/projects/tourease1.jpg", "/assets/images/projects/tourease2.jpg"],
         challenge: "Dynamic local travel agencies struggle to automate complex, fully customisable itineraries across shifting multi-vendor slots, fluctuating pricing parameters, and labour-intensive manual reservation workflows that create errors and lost revenue.",
         solution: "Engineered an automated route-mapping and multi-vendor scheduling system using Dart/Flutter for the front-end. Built custom state machines for booking slot management and integrated secure payment gateways that verify reservations in real-time against live vendor availability APIs.",
         result: "Eliminated approximately 70% of manual booking interventions for administrative staff, freeing over 30 hours per week for the operations team. Successfully increased the checkout conversion rate by 35% within the first three months of public launch.",
@@ -186,8 +239,8 @@ const projectData = {
         features: ["High-res art previews", "Secure payment gateway", "Artist profiles", "Category-based search", "Order tracking"],
         tech: { frontend: "React + Tailwind", backend: "Node.js", database: "PostgreSQL" },
         tags: ["Art", "Marketplace", "Design"],
-        images: ["./assets/images/projects/artgallery.png", "./assets/images/projects/artgallery1.png", "./assets/images/projects/artgallery2.png"],
-        challenge: "Independent artists were relying on Instagram DMs and PDF catalogues to sell original work — no secure payments, no order tracking, and no way for collectors to preview artwork at full resolution before buying. Transactions fell through regularly.",
+        images: ["/assets/images/projects/artgallery.png", "/assets/images/projects/artgallery1.png", "/assets/images/projects/artgallery2.png"],
+        challenge: "Independent artists were relying on Instagram DMs and PDF catalogues to sell original work — no secure payments, no order tracking, and no way for collectors to preview artwork at full resolution before buying. Transactions fell party regularly.",
         solution: "Built a full React + Node.js marketplace with Stripe integration, high-resolution lazy-loaded artwork previews, and a structured artist profile system. Deployed on PostgreSQL with a fast search index across categories, medium, and price ranges.",
         result: "Artists on the platform reported a measurable reduction in back-and-forth with buyers. The checkout flow converted first-time visitors into paying customers without any manual follow-up, and artwork browsing became the primary discovery channel replacing Instagram referrals.",
         actions: [{ label: "Visit Gallery", icon: "fas fa-external-link-alt", link: "#" }, { label: "View Portfolio", icon: "fas fa-briefcase", link: "#" }]
@@ -198,7 +251,7 @@ const projectData = {
         features: ["AI scholarship matching", "Fraud detection system", "Application tracking", "Deadline reminders", "University database"],
         tech: { frontend: "Next.js", backend: "Python + FastAPI", database: "PostgreSQL + Supabase" },
         tags: ["AI", "Education", "Next.js"],
-        images: ["./assets/images/projects/scholariq.png", "./assets/images/projects/scholariq1.png", "./assets/images/projects/scholariq.png"],
+        images: ["/assets/images/projects/scholariq.png", "/assets/images/projects/scholariq1.png", "/assets/images/projects/scholariq.png"],
         challenge: "Students face a highly fragmented and insecure global scholarship landscape cluttered with broken links, confusing eligibility requirements, and predatory scam portals designed specifically to harvest sensitive personal data from vulnerable applicants.",
         solution: "Engineered a lightning-fast semantic matchmaking portal using Next.js and Supabase as the backbone. Integrated a custom NLP classification system built in Python + FastAPI that automatically screens scholarship listings for legitimacy — scoring each opportunity against historical trust parameters and live cross-referencing.",
         result: "Successfully processed and screened 5,000+ scholarship listings during the pilot phase, with the AI model flagging approximately 40% of scraped entries as high-risk or fraudulent. Student applicants can now identify verified, safe scholarship opportunities in under 30 seconds.",
@@ -211,12 +264,12 @@ const projectData = {
         tech: { frontend: "Flutter", backend: "Node.js + Express", database: "Supabase" },
         tags: ["Education", "Kids", "Gamified", "Mobile"],
         images: [
-            "./assets/images/projects/painting.jpeg",
-            "./assets/images/projects/quiz.jpeg",
-            "./assets/images/projects/tracing.jpeg",
-            "./assets/images/projects/carrot.jpeg",
-            "./assets/images/projects/apple.jpeg",
-            "./assets/images/projects/home.jpeg"
+            "/assets/images/projects/painting.jpeg",
+            "/assets/images/projects/quiz.jpeg",
+            "/assets/images/projects/tracing.jpeg",
+            "/assets/images/projects/carrot.jpeg",
+            "/assets/images/projects/apple.jpeg",
+            "/assets/images/projects/home.jpeg"
         ],
         actions: [
             { label: "Join Testing", icon: "fab fa-google-play", link: "#" },
@@ -230,10 +283,10 @@ const projectData = {
         tech: { frontend: "React", backend: "Node.js", database: "MongoDB" },
         tags: ["Sports", "Prediction", "Web App"],
         images: [
-            "./assets/images/projects/voteoffside%20(1).png",
-            "./assets/images/projects/voteoffside%20(2).png",
-            "./assets/images/projects/voteoffside%20(3).png",
-            "./assets/images/projects/voteoffside%20(4).png"
+            "/assets/images/projects/voteoffside%20(1).png",
+            "/assets/images/projects/voteoffside%20(2).png",
+            "/assets/images/projects/voteoffside%20(3).png",
+            "/assets/images/projects/voteoffside%20(4).png"
         ],
         actions: [
             { label: "Visit Website", icon: "fas fa-external-link-alt", link: "#" },

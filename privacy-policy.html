@@ -1,17 +1,20 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privacy Policy | Broad Solution Tech</title>
+    <script>
+        if (localStorage.getItem('theme') === 'light') { document.documentElement.setAttribute('data-theme', 'light'); }
+    </script>
     <meta name="description" content="Privacy Policy for Broad Solution Tech. Learn how we collect, use, and protect your personal data.">
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #05000f; display: flex; justify-content: center; align-items: center; z-index: 9999; transition: opacity 0.8s ease, visibility 0.8s; }
+        #preloader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-color); display: flex; justify-content: center; align-items: center; z-index: 9999; transition: opacity 0.8s ease, visibility 0.8s; }
         .loader-content { text-align: center; }
-        .loader-logo { font-size: 2.5rem; font-weight: 800; color: #fff; margin-bottom: 20px; letter-spacing: 5px; animation: pulse 1.5s infinite; }
+        .loader-logo { font-size: 2.5rem; font-weight: 800; color: var(--text-primary); margin-bottom: 20px; letter-spacing: 5px; animation: pulse 1.5s infinite; }
         .loader-bar { width: 200px; height: 2px; background: rgba(255,255,255,0.1); position: relative; overflow: hidden; border-radius: 10px; }
         .loader-progress { position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, #8b5cf6, transparent); animation: loading 1.5s infinite; }
         @keyframes pulse { 0% { opacity: 0.5; transform: scale(0.98); } 50% { opacity: 1; transform: scale(1); } 100% { opacity: 0.5; transform: scale(0.98); } }
@@ -23,19 +26,19 @@
         .legal-container { max-width: 860px; margin: 0 auto; }
         .legal-badge { display: inline-block; padding: 6px 18px; background: rgba(139,92,246,0.12); color: #a78bfa; border: 1px solid rgba(139,92,246,0.3); border-radius: 100px; font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1.5rem; }
         .legal-title { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; margin-bottom: 1rem; line-height: 1.2; }
-        .legal-meta { color: rgba(255,255,255,0.4); font-size: 0.9rem; margin-bottom: 3.5rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
-        .legal-section { margin-bottom: 2.5rem; padding: 2rem; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: 16px; transition: border-color 0.3s ease; }
+        .legal-meta { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 3.5rem; padding-bottom: 2rem; border-color: var(--glass-border); }
+        .legal-section { margin-bottom: 2.5rem; padding: 2rem; background: var(--glass-bg); border-color: var(--glass-border); border-radius: 16px; transition: border-color 0.3s ease; }
         .legal-section:hover { border-color: rgba(139,92,246,0.2); }
-        .legal-section h2 { font-size: 1.15rem; font-weight: 700; margin-bottom: 1rem; color: #fff; display: flex; align-items: center; gap: 10px; }
+        .legal-section h2 { font-size: 1.15rem; font-weight: 700; margin-bottom: 1rem; color: var(--text-primary); display: flex; align-items: center; gap: 10px; }
         .legal-section h2 i { color: #8b5cf6; font-size: 1rem; }
-        .legal-section p { color: rgba(255,255,255,0.6); line-height: 1.8; margin-bottom: 0.8rem; font-size: 0.95rem; }
-        .legal-section ul { color: rgba(255,255,255,0.6); padding-left: 1.5rem; line-height: 2; font-size: 0.95rem; }
+        .legal-section p { color: var(--text-secondary); line-height: 1.8; margin-bottom: 0.8rem; font-size: 0.95rem; }
+        .legal-section ul { color: var(--text-secondary); padding-left: 1.5rem; line-height: 2; font-size: 0.95rem; }
         .legal-section ul li::marker { color: #8b5cf6; }
         .legal-highlight { background: rgba(139,92,246,0.08); border-left: 3px solid #8b5cf6; padding: 1rem 1.5rem; border-radius: 0 8px 8px 0; margin-top: 1rem; }
-        .legal-highlight p { margin: 0; color: rgba(255,255,255,0.7); }
+        .legal-highlight p { margin: 0; color: var(--text-secondary); }
 
-        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: #25d366; color: #fff; border-radius: 50%; text-align: center; font-size: 34px; box-shadow: 0 4px 20px rgba(37,211,102,0.4); z-index: 9999; display: flex; align-items: center; justify-content: center; transition: all 0.3s cubic-bezier(0.175,0.885,0.32,1.275); border: 1px solid rgba(255,255,255,0.1); }
-        .whatsapp-float:hover { transform: scale(1.15) translateY(-5px); background: #20ba5a; box-shadow: 0 8px 30px rgba(37,211,102,0.6); color: #fff; }
+        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; background: #25d366; color: var(--text-primary); border-radius: 50%; text-align: center; font-size: 34px; box-shadow: 0 4px 20px rgba(37,211,102,0.4); z-index: 9999; display: flex; align-items: center; justify-content: center; transition: all 0.3s cubic-bezier(0.175,0.885,0.32,1.275); border: 1px solid rgba(255,255,255,0.1); }
+        .whatsapp-float:hover { transform: scale(1.15) translateY(-5px); background: #20ba5a; box-shadow: 0 8px 30px rgba(37,211,102,0.6); color: var(--text-primary); }
         .whatsapp-pulse { position: absolute; width: 100%; height: 100%; background: rgba(37,211,102,0.4); border-radius: 50%; z-index: -1; animation: whatsapp-pulse-animation 2s infinite; }
         @keyframes whatsapp-pulse-animation { 0% { transform: scale(0.95); opacity: 0.8; } 50% { transform: scale(1.4); opacity: 0; } 100% { transform: scale(0.95); opacity: 0; } }
     </style>
@@ -67,7 +70,8 @@
                     <a href="reviews.html">Reviews</a>
                     <a href="about.html">Team</a>
                     <a href="contact.html">Contact</a>
-                                    <a href="https://project.broadsolutiontech.com/" target="_blank" class="nav-cta-btn"><i class="fas fa-rocket"></i> Order Project</a>
+                                    <button class="theme-toggle-btn" aria-label="Toggle Theme"><i class="fas fa-sun"></i></button>
+                <a href="https://project.broadsolutiontech.com/" target="_blank" class="nav-cta-btn"><i class="fas fa-rocket"></i> Order Project</a>
 </div>
             </div>
         </nav>
@@ -251,3 +255,4 @@
     </a>
 </body>
 </html>
+

@@ -13,7 +13,7 @@
     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
     # 3. Map Root Assets to Public Folder (Fixes 404s)
-    RewriteRule ^assets/(.*)$ public/assets/$1 [L]
+    RewriteRule ^(?:.*/)?assets/(.*)$ public/assets/$1 [L]
     RewriteRule ^favicon\.svg$ public/favicon.svg [L]
     RewriteRule ^favicon\.ico$ public/favicon.ico [L]
 
