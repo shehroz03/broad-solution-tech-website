@@ -1,19 +1,10 @@
-import { resolve } from 'path';
 import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react-swc';
+import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  build: {
-    rollupOptions: {
-      input: {
-        main: resolve(__dirname, 'index.html'),
-        about: resolve(__dirname, 'about.html'),
-        contact: resolve(__dirname, 'contact.html'),
-        ourWork: resolve(__dirname, 'our-work.html'),
-        reviews: resolve(__dirname, 'reviews.html'),
-        technology: resolve(__dirname, 'technology.html'),
-        privacyPolicy: resolve(__dirname, 'privacy-policy.html'),
-        termsOfService: resolve(__dirname, 'terms-of-service.html')
-      }
-    }
-  }
+  plugins: [
+    tailwindcss(),
+    react()
+  ],
 });

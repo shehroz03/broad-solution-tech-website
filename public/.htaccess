@@ -20,6 +20,8 @@
     RewriteRule ^(.*)$ $1.html [NC,L]
 
     # Map relative/subpath assets to root assets (Fixes 404s on trailing slash URLs)
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
     RewriteRule ^(?:.*/)+assets/(.*)$ assets/$1 [L]
 </IfModule>
 

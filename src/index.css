@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+@theme {
+  --color-bg-canvas: #FAFAF8;
+  --color-text-primary: #101214;
+  --color-text-secondary: #65676B;
+  --color-text-muted: #9A9CA1;
+  --color-border-subtle: #E5E5E2;
+  --color-brand-accent: #E63946;
+  --color-brand-soft: #FFF1F2;
+  --color-brand-active: #D92D3A;
+
+  --font-sans: "Inter Tight", sans-serif;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-bg-canvas);
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom Utilities based on Figma instructions */
+@layer utilities {
+  .clip-text-up {
+    clip-path: inset(0 0 0 0);
+  }
+}

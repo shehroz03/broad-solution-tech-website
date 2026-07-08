@@ -14,7 +14,7 @@ window.addEventListener('load', () => {
         if (typeof VANTA !== 'undefined' && VANTA.BIRDS) {
             const isLowEnd = window.innerWidth < 768;
             const currentTheme = document.documentElement.getAttribute('data-theme');
-            const vantaBgColor = currentTheme === 'light' ? 0xf8f9fc : 0x05000f;
+            const vantaBgColor = currentTheme === 'light' ? 0xf8f9fc : 0x070115;
             window.vantaEffect = VANTA.BIRDS({
                 el: ".hero",
                 mouseControls: !isLowEnd,
@@ -25,13 +25,13 @@ window.addEventListener('load', () => {
                 scale: 1.00,
                 scaleMobile: 1.00,
                 backgroundColor: vantaBgColor,
-                color1: 0x6b2fd9,
-                color2: 0x8b5cf6,
-                birdSize: isLowEnd ? 0.8 : 1.20,
-                wingSpan: 15.00,
-                speedLimit: 4.00,
-                quantity: isLowEnd ? 2.00 : 3.00,
-                separation: 50.00,
+                color1: 0x2b1354, // Very subtle dark violet
+                color2: 0x4a1d8a, // Faint elegant purple
+                birdSize: 0.6,    // Smaller, elegant birds
+                wingSpan: 10.00,
+                speedLimit: 2.00, // Slower, calmer movement
+                quantity: 1.5,    // Much fewer birds
+                separation: 80.00,
                 alignment: 50.00,
                 cohesion: 50.00
             });
@@ -78,7 +78,7 @@ const toggleTheme = () => {
     
     if (window.vantaEffect) {
         window.vantaEffect.setOptions({
-            backgroundColor: newTheme === 'light' ? 0xf8f9fc : 0x05000f
+            backgroundColor: newTheme === 'light' ? 0xf8f9fc : 0x070115
         });
     }
 };
@@ -120,8 +120,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // Smooth Reveal Animations (Intersection Observer)
 const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
+    threshold: 0.12,
+    rootMargin: '0px 0px -40px 0px'
 };
 
 const observer = new IntersectionObserver((entries) => {
@@ -138,7 +138,7 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 // Dynamically target all elements that should animate on scroll
-const animatedSelectors = 'h1, h2, h3, h4, p, .btn, .project-card, .team-card-premium, .testimonial-card, .tech-box, .stepsec, .ov-card, .deep-dive-card, .contact-card-premium, .stat-item, .founder-img';
+const animatedSelectors = 'h1, h2, h3, h4, p, .btn, .project-card, .team-card-premium, .testimonial-card, .tech-box, .stepsec, .ov-card, .deep-dive-card, .contact-card-premium, .stat-item, .founder-img, .srv-card, .abt-story-card, .abt-stat-card, .abt-value-card';
 
 document.querySelectorAll(animatedSelectors).forEach((el, index) => {
     // Avoid animating elements inside the nav and hero to keep initial load smooth
@@ -151,8 +151,9 @@ document.querySelectorAll(animatedSelectors).forEach((el, index) => {
         el.classList.contains('project-card') ||
         el.classList.contains('tech-box') ||
         el.classList.contains('stepsec') ||
+        el.classList.contains('srv-card') ||
         el.classList.contains('ov-card')) {
-        el.style.transitionDelay = `${(index % 3) * 0.1}s`;
+        el.style.transitionDelay = `${(index % 3) * 0.15}s`;
     }
     
     observer.observe(el);
@@ -628,3 +629,267 @@ if (document.readyState === 'loading') {
     initContactForm();
 }
 
+// ── 3D HERO ANIMATION (CUSTOM THREE.JS) ──────────────────────────────────────
+function initHero3D() {
+    const canvas = document.getElementById('hero-3d-canvas');
+    if (!canvas || typeof THREE === 'undefined') return;
+
+    const container = canvas.parentElement;
+    const width = container.clientWidth || 500;
+    const height = container.clientHeight || 500;
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+    camera.position.set(0, 0, 7);
+
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    renderer.setSize(width, height);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.outputEncoding = THREE.sRGBEncoding;
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+
+    // Lighting
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.9);
+    scene.add(ambientLight);
+
+    const dirLight1 = new THREE.DirectionalLight(0xffffff, 2.5);
+    dirLight1.position.set(5, 5, 5);
+    scene.add(dirLight1);
+
+    const dirLight2 = new THREE.DirectionalLight(0x8b5cf6, 3);
+    dirLight2.position.set(-5, -5, 2);
+    scene.add(dirLight2);
+
+    const pointLight = new THREE.PointLight(0xa78bfa, 2, 10);
+    pointLight.position.set(0, 2, 3);
+    scene.add(pointLight);
+
+    // Master Group
+    const characterGroup = new THREE.Group();
+    scene.add(characterGroup);
+
+    // Core Purple Sphere
+    const coreGeo = new THREE.SphereGeometry(1.2, 64, 64);
+    const coreMat = new THREE.MeshStandardMaterial({
+        color: 0x6b2fd9,
+        roughness: 0.2,
+        metalness: 0.4,
+        emissive: 0x2d1265,
+        emissiveIntensity: 0.4
+    });
+    const coreMesh = new THREE.Mesh(coreGeo, coreMat);
+    characterGroup.add(coreMesh);
+
+    // Eyes
+    const eyeGeo = new THREE.SphereGeometry(0.22, 32, 32);
+    const eyeMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.1 });
+    const pupilGeo = new THREE.SphereGeometry(0.09, 32, 32);
+    const pupilMat = new THREE.MeshBasicMaterial({ color: 0x05000f });
+
+    // Left Eye
+    const leftEye = new THREE.Mesh(eyeGeo, eyeMat);
+    leftEye.position.set(-0.38, 0.2, 1.08);
+    coreMesh.add(leftEye);
+    const leftPupil = new THREE.Mesh(pupilGeo, pupilMat);
+    leftPupil.position.set(0, 0, 0.15);
+    leftEye.add(leftPupil);
+
+    // Right Eye
+    const rightEye = new THREE.Mesh(eyeGeo, eyeMat);
+    rightEye.position.set(0.38, 0.2, 1.08);
+    coreMesh.add(rightEye);
+    const rightPupil = new THREE.Mesh(pupilGeo, pupilMat);
+    rightPupil.position.set(0, 0, 0.15);
+    rightEye.add(rightPupil);
+
+    // Forcefield / Glass Bubble
+    const shieldGeo = new THREE.SphereGeometry(1.85, 64, 64);
+    const shieldMat = new THREE.MeshPhysicalMaterial({
+        color: 0x8b5cf6,
+        transparent: true,
+        opacity: 0.25,
+        roughness: 0.1,
+        transmission: 0.9,
+        thickness: 0.5,
+        clearcoat: 1,
+        clearcoatRoughness: 0.1
+    });
+    const shieldMesh = new THREE.Mesh(shieldGeo, shieldMat);
+    characterGroup.add(shieldMesh);
+
+    // Base Rings (Underneath)
+    const ringGeo1 = new THREE.TorusGeometry(2.2, 0.08, 16, 100);
+    const ringMat1 = new THREE.MeshStandardMaterial({ color: 0x2d1265, roughness: 0.5, metalness: 0.8 });
+    const baseRing1 = new THREE.Mesh(ringGeo1, ringMat1);
+    baseRing1.rotation.x = Math.PI / 2;
+    baseRing1.position.y = -1.9;
+    characterGroup.add(baseRing1);
+
+    const ringGeo2 = new THREE.TorusGeometry(2.5, 0.03, 16, 100);
+    const ringMat2 = new THREE.MeshBasicMaterial({ color: 0x8b5cf6, transparent: true, opacity: 0.6 });
+    const baseRing2 = new THREE.Mesh(ringGeo2, ringMat2);
+    baseRing2.rotation.x = Math.PI / 2;
+    baseRing2.position.y = -1.9;
+    characterGroup.add(baseRing2);
+
+    // Particles / Starfield
+    const particlesGroup = new THREE.Group();
+    scene.add(particlesGroup);
+
+    const particleCount = 75;
+    const particleGeo = new THREE.BufferGeometry();
+    const positions = new Float32Array(particleCount * 3);
+
+    for (let i = 0; i < particleCount; i++) {
+        // Distribute in a spherical shell around the character
+        const radius = 2.4 + Math.random() * 2.5;
+        const theta = Math.random() * Math.PI * 2;
+        const phi = Math.acos((Math.random() * 2) - 1);
+
+        positions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
+        positions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
+        positions[i * 3 + 2] = radius * Math.cos(phi);
+    }
+
+    particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const particleMat = new THREE.PointsMaterial({
+        color: 0xa78bfa,
+        size: 0.07,
+        transparent: true,
+        opacity: 0.8,
+        blending: THREE.AdditiveBlending
+    });
+    const particleMesh = new THREE.Points(particleGeo, particleMat);
+    particlesGroup.add(particleMesh);
+
+    // Mouse Interaction
+    let targetRotationX = 0;
+    let targetRotationY = 0;
+    let mouseX = 0;
+    let mouseY = 0;
+
+    window.addEventListener('mousemove', (e) => {
+        mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+        mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+        targetRotationX = mouseX * 0.4;
+        targetRotationY = mouseY * 0.25;
+    });
+
+    // Animation Loop
+    const clock = new THREE.Clock();
+    function animate() {
+        requestAnimationFrame(animate);
+
+        const elapsedTime = clock.getElapsedTime();
+
+        // Gentle Floating Animation (Math.sin)
+        characterGroup.position.y = Math.sin(elapsedTime * 1.5) * 0.25;
+
+        // Base Rings Rotation
+        baseRing1.rotation.z += 0.005;
+        baseRing2.rotation.z -= 0.008;
+
+        // Particles Animation
+        particlesGroup.rotation.y += 0.002;
+        particlesGroup.position.y = Math.sin(elapsedTime * 0.8) * 0.1;
+
+        // Smooth Mouse Rotation Follow
+        characterGroup.rotation.y += (targetRotationX - characterGroup.rotation.y) * 0.05;
+        characterGroup.rotation.x += (targetRotationY - characterGroup.rotation.x) * 0.05;
+
+        renderer.render(scene, camera);
+    }
+    animate();
+
+    // Responsive Handling
+    window.addEventListener('resize', () => {
+        if (!container) return;
+        const newWidth = container.clientWidth;
+        const newHeight = container.clientHeight;
+        camera.aspect = newWidth / newHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(newWidth, newHeight);
+    });
+}
+
+// Initialize 3D Hero
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHero3D);
+} else {
+    initHero3D();
+}
+
+// ── ANIMATED NUMBER COUNTER (COUNTUP EFFECT) ─────────────────────────────────
+function initNumberCounters() {
+    // Target all number containers across the website
+    const statElements = document.querySelectorAll('.stat-item h3, .abt-stat-num, .ic-n');
+    if (!statElements.length) return;
+
+    const observerOptions = {
+        threshold: 0.5,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const el = entry.target;
+                if (el.classList.contains('counted')) return;
+                el.classList.add('counted');
+
+                // Extract target number and suffix (like +, %, etc.)
+                let originalText = el.getAttribute('data-target') || el.innerText.trim();
+                if (!el.hasAttribute('data-target')) {
+                    el.setAttribute('data-target', originalText);
+                }
+                
+                // Parse number and suffix
+                let match = originalText.match(/^(\d+)(.*?)$/);
+                let targetNum = match ? parseInt(match[1], 10) : 0;
+                let suffix = match ? match[2] : '';
+                
+                // Fallback for data-t and data-s (from technology.html)
+                if (el.hasAttribute('data-t')) {
+                    targetNum = parseInt(el.getAttribute('data-t'), 10);
+                    suffix = el.getAttribute('data-s') || '';
+                }
+
+                let currentNum = 0;
+                let duration = 2000; // 2 seconds animation
+                let startTime = null;
+
+                function step(timestamp) {
+                    if (!startTime) startTime = timestamp;
+                    let progress = Math.min((timestamp - startTime) / duration, 1);
+                    
+                    // Smooth easeOutQuad easing function
+                    let easeProgress = progress * (2 - progress);
+                    currentNum = Math.floor(easeProgress * targetNum);
+                    
+                    el.innerText = currentNum + suffix;
+
+                    if (progress < 1) {
+                        requestAnimationFrame(step);
+                    } else {
+                        el.innerText = targetNum + suffix;
+                    }
+                }
+                
+                // Set initial text to 0 + suffix before starting
+                el.innerText = '0' + suffix;
+                requestAnimationFrame(step);
+                
+                // Unobserve after animating once
+                obs.unobserve(el);
+            }
+        });
+    }, observerOptions);
+
+    statElements.forEach(el => observer.observe(el));
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initNumberCounters);
+} else {
+    initNumberCounters();
+}

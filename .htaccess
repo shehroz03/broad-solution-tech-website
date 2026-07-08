@@ -13,8 +13,14 @@
     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
     # 3. Map Root Assets to Public Folder (Fixes 404s)
+    RewriteCond %{DOCUMENT_ROOT}/public/assets/$1 -f [OR]
+    RewriteCond %{DOCUMENT_ROOT}/public/assets/$1 -d
     RewriteRule ^(?:.*/)?assets/(.*)$ public/assets/$1 [L]
+
+    RewriteCond %{DOCUMENT_ROOT}/public/favicon.svg -f
     RewriteRule ^favicon\.svg$ public/favicon.svg [L]
+
+    RewriteCond %{DOCUMENT_ROOT}/public/favicon.ico -f
     RewriteRule ^favicon\.ico$ public/favicon.ico [L]
 
     # 4. Remove .html extension

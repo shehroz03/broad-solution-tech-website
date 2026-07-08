@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,11 +10,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./style.css">
     
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         :root {
-            --bg: var(--bg-color);
+            --bg: var(--bg-color, #05000f);
             --glass: rgba(255, 255, 255, 0.03);
             --glass-b: rgba(255, 255, 255, 0.07);
             --text: rgba(255, 255, 255, 0.88);
@@ -23,6 +24,13 @@
             --ff-m: 'Space Mono', monospace;
             --ff-b: 'DM Sans', sans-serif;
             --cursor-color: #c084fc;
+        }
+        [data-theme="light"] {
+            --bg: #f8f9fc;
+            --text: #0f172a;
+            --muted: #475569;
+            --glass: rgba(255, 255, 255, 0.7);
+            --glass-b: rgba(0, 0, 0, 0.05);
         }
 
         html { scroll-behavior: smooth; }
@@ -163,7 +171,7 @@
         .ob { position: absolute; width: 48px; height: 48px; border-radius: 50%; background: var(--glass); border: 1px solid var(--glass-b); display: flex; align-items: center; justify-content: center; backdrop-filter: blur(8px); box-shadow: 0 4px 16px rgba(0,0,0,0.3); transition: transform 0.3s, border-color 0.3s; will-change: left, top; pointer-events: auto; cursor: none; }
         .ob i { font-size: 20px; font-style: normal; }
         .ob:hover { transform: scale(1.15) translateY(-2px); border-color: var(--c); box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
-        .ob::after { content: attr(data-t); position: absolute; top: -26px; font-family: var(--ff-m); font-size: 10px; color: var(--text-primary); white-space: nowrap; opacity: 0; transition: 0.3s; background: rgba(0,0,0,0.8); padding: 4px 8px; border-radius: 4px; pointer-events: none; border: 1px solid var(--glass-b); }
+        .ob::after { content: attr(data-t); position: absolute; top: -26px; font-family: var(--ff-m); font-size: 10px; color: #ffffff; white-space: nowrap; opacity: 0; transition: 0.3s; background: rgba(0,0,0,0.8); padding: 4px 8px; border-radius: 4px; pointer-events: none; border: 1px solid var(--glass-b); }
         .ob:hover::after { opacity: 1; top: -32px; }
 
         /* Text Area */
@@ -180,7 +188,7 @@
         .tp:hover::before { opacity: 1; box-shadow: 0 0 10px var(--c); }
 
         .fl { display: flex; flex-direction: column; gap: 14px; }
-        .fi { display: flex; align-items: center; gap: 16px; padding: 16px 20px; background: var(--glass); border: 1px solid var(--glass-b); border-radius: 8px; font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.85); transition: 0.3s; border-left: 3px solid transparent; cursor: none; }
+        .fi { display: flex; align-items: center; gap: 16px; padding: 16px 20px; background: var(--glass); border: 1px solid var(--glass-b); border-radius: 8px; font-size: 14px; font-weight: 500; color: var(--text); transition: 0.3s; border-left: 3px solid transparent; cursor: none; }
         .fi:hover { background: var(--glass-bg); transform: translateX(6px); border-left-color: var(--c); border-right-color: var(--text-secondary); }
         .fic { font-size: 18px; font-style: normal; }
 
@@ -328,8 +336,8 @@
                 </div>
                 <div class="fl">
                     <div class="fi"><i class="fic">⚡</i>Blazing-fast SSR &amp; SSG</div>
-                    <div class="fi"><i class="fic">ðŸŽ¨</i>Tailwind Utility Styling</div>
-                    <div class="fi"><i class="fic">â™¿</i>WCAG 2.1 Accessibility</div>
+                    <div class="fi"><i class="fic">🎨</i>Tailwind Utility Styling</div>
+                    <div class="fi"><i class="fic">♿</i>WCAG 2.1 Accessibility</div>
                 </div>
             </div>
         </div>
@@ -351,16 +359,16 @@
                     <div class="tp">Express</div>
                 </div>
                 <div class="fl">
-                    <div class="fi"><i class="fic">ðŸ”Œ</i>RESTful &amp; GraphQL APIs</div>
-                    <div class="fi"><i class="fic">ðŸ”„</i>Microservices Architecture</div>
-                    <div class="fi"><i class="fic">ðŸ“ˆ</i>Auto-scaling Infrastructure</div>
+                    <div class="fi"><i class="fic">🔌</i>RESTful &amp; GraphQL APIs</div>
+                    <div class="fi"><i class="fic">🔄</i>Microservices Architecture</div>
+                    <div class="fi"><i class="fic">📈</i>Auto-scaling Infrastructure</div>
                 </div>
             </div>
             <div class="oc">
                 <div class="os">
                     <svg class="or1"><circle cx="50%" cy="50%" r="48%"/></svg>
                     <svg class="or2"><circle cx="50%" cy="50%" r="35%"/></svg>
-                    <div class="oh"><i>âš™ï¸</i><span>Back</span></div>
+                    <div class="oh"><i>⚙️</i><span>Back</span></div>
                     <div class="ois" id="ois-s2"></div>
                 </div>
             </div>
@@ -376,7 +384,7 @@
                 <div class="os">
                     <svg class="or1"><circle cx="50%" cy="50%" r="48%"/></svg>
                     <svg class="or2"><circle cx="50%" cy="50%" r="35%"/></svg>
-                    <div class="oh"><i>ðŸ—„ï¸</i><span>Data</span></div>
+                    <div class="oh"><i>🗄️</i><span>Data</span></div>
                     <div class="ois" id="ois-s3"></div>
                 </div>
             </div>
@@ -392,8 +400,8 @@
                 </div>
                 <div class="fl">
                     <div class="fi"><i class="fic">⚡</i>Real-time Sync &amp; PubSub</div>
-                    <div class="fi"><i class="fic">ðŸ›¡ï¸</i>Row-Level Security (RLS)</div>
-                    <div class="fi"><i class="fic">â˜ï¸</i>Multi-cloud Deployment</div>
+                    <div class="fi"><i class="fic">🛡️</i>Row-Level Security (RLS)</div>
+                    <div class="fi"><i class="fic">☁️</i>Multi-cloud Deployment</div>
                 </div>
             </div>
         </div>
@@ -416,15 +424,15 @@
                 </div>
                 <div class="fl">
                     <div class="fi"><i class="fic">📱</i>iOS &amp; Android — one codebase</div>
-                    <div class="fi"><i class="fic">ðŸ¤–</i>LLM-powered autonomous agents</div>
-                    <div class="fi"><i class="fic">ðŸ§ </i>RAG pipelines &amp; vector search</div>
+                    <div class="fi"><i class="fic">🤖</i>LLM-powered autonomous agents</div>
+                    <div class="fi"><i class="fic">🧠</i>RAG pipelines &amp; vector search</div>
                 </div>
             </div>
             <div class="oc">
                 <div class="os">
                     <svg class="or1"><circle cx="50%" cy="50%" r="48%"/></svg>
                     <svg class="or2"><circle cx="50%" cy="50%" r="35%"/></svg>
-                    <div class="oh"><i>ðŸ¤–</i><span>Mobile/AI</span></div>
+                    <div class="oh"><i>🤖</i><span>Mobile/AI</span></div>
                     <div class="ois" id="ois-s4"></div>
                 </div>
             </div>
@@ -440,7 +448,7 @@
                 <div class="os">
                     <svg class="or1"><circle cx="50%" cy="50%" r="48%"/></svg>
                     <svg class="or2"><circle cx="50%" cy="50%" r="35%"/></svg>
-                    <div class="oh"><i>ðŸ›¡ï¸</i><span>Secure</span></div>
+                    <div class="oh"><i>🛡️</i><span>Secure</span></div>
                     <div class="ois" id="ois-s5"></div>
                 </div>
             </div>
@@ -455,8 +463,8 @@
                     <div class="tp">Cyber Defense</div>
                 </div>
                 <div class="fl">
-                    <div class="fi"><i class="fic">ðŸ”</i>Vulnerability Assessment</div>
-                    <div class="fi"><i class="fic">ðŸ”</i>Zero-Trust Architecture</div>
+                    <div class="fi"><i class="fic">🔍</i>Vulnerability Assessment</div>
+                    <div class="fi"><i class="fic">🔍</i>Zero-Trust Architecture</div>
                     <div class="fi"><i class="fic">📊</i>Real-time Threat Monitoring</div>
                 </div>
             </div>
@@ -559,34 +567,34 @@
         // ORBIT BUBBLES LOGIC
         const orbs = {
             s1: [
-                {e:'âš›ï¸', t:'React', a:0, s: 0.005, r: 48},
-                {e:'â–²', t:'Next.js', a:180, s: 0.005, r: 48},
+                {e:'⚛️', t:'React', a:0, s: 0.005, r: 48},
+                {e:'▲', t:'Next.js', a:180, s: 0.005, r: 48},
                 {e:'TS', t:'TypeScript', a:90, s: -0.006, r: 35},
                 {e:'✨', t:'Motion', a:270, s: -0.006, r: 35}
             ],
             s2: [
-                {e:'ðŸŸ¢', t:'Node.js', a:45, s: 0.004, r: 48},
-                {e:'ðŸ', t:'Python', a:225, s: 0.004, r: 48},
+                {e:'🟢', t:'Node.js', a:45, s: 0.004, r: 48},
+                {e:'🐍', t:'Python', a:225, s: 0.004, r: 48},
                 {e:'🚀', t:'FastAPI', a:135, s: -0.005, r: 35},
-                {e:'ðŸš‚', t:'Express', a:315, s: -0.005, r: 35}
+                {e:'🚂', t:'Express', a:315, s: -0.005, r: 35}
             ],
             s3: [
-                {e:'ðŸ”¥', t:'Firebase', a:20, s: 0.005, r: 48},
-                {e:'ðŸƒ', t:'MongoDB', a:200, s: 0.005, r: 48},
+                {e:'🔥', t:'Firebase', a:20, s: 0.005, r: 48},
+                {e:'🍃', t:'MongoDB', a:200, s: 0.005, r: 48},
                 {e:'⚡', t:'Supabase', a:110, s: -0.007, r: 35},
-                {e:'ðŸ˜', t:'Postgres', a:290, s: -0.007, r: 35}
+                {e:'🐘', t:'Postgres', a:290, s: -0.007, r: 35}
             ],
             s4: [
                 {e:'📱', t:'React Native', a:60, s: 0.006, r: 48},
-                {e:'ðŸ¦', t:'Flutter', a:240, s: 0.006, r: 48},
-                {e:'ðŸ¤–', t:'OpenAI', a:150, s: -0.005, r: 35},
-                {e:'ðŸ”—', t:'LangChain', a:330, s: -0.005, r: 35}
+                {e:'🐦', t:'Flutter', a:240, s: 0.006, r: 48},
+                {e:'🤖', t:'OpenAI', a:150, s: -0.005, r: 35},
+                {e:'🔗', t:'LangChain', a:330, s: -0.005, r: 35}
             ],
             s5: [
-                {e:'ðŸ›¡ï¸', t:'VAPT', a:10, s: 0.004, r: 48},
-                {e:'ðŸ”', t:'Zero-Trust', a:190, s: 0.004, r: 48},
-                {e:'ðŸ”', t:'Pen Testing', a:100, s: -0.006, r: 35},
-                {e:'ðŸŒ', t:'NetSec', a:280, s: -0.006, r: 35}
+                {e:'🛡️', t:'VAPT', a:10, s: 0.004, r: 48},
+                {e:'🔍', t:'Zero-Trust', a:190, s: 0.004, r: 48},
+                {e:'🔍', t:'Pen Testing', a:100, s: -0.006, r: 35},
+                {e:'🌐', t:'NetSec', a:280, s: -0.006, r: 35}
             ]
         };
 
@@ -694,7 +702,7 @@
             width: 60px;
             height: 60px;
             background: #25d366;
-            color: var(--text-primary);
+            color: #ffffff;
             border-radius: 50%;
             text-align: center;
             font-size: 34px;
@@ -715,7 +723,7 @@
             transform: scale(1.15) translateY(-5px);
             background: #20ba5a;
             box-shadow: 0 8px 30px rgba(37, 211, 102, 0.6);
-            color: var(--text-primary);
+            color: #ffffff;
         }
 
         .whatsapp-float:hover i {
@@ -752,7 +760,7 @@
             right: 75px;
             background: rgba(10, 10, 20, 0.9);
             border: 1px solid rgba(139, 92, 246, 0.3);
-            color: var(--text-primary);
+            color: #ffffff;
             padding: 8px 16px;
             border-radius: 8px;
             font-size: 13px;
@@ -791,6 +799,8 @@
         <i class="fab fa-whatsapp"></i>
         <span class="whatsapp-tooltip">Chat with Us</span>
     </a>
+
+    <script src="main.js"></script>
 </body>
 </html>
 
