@@ -28,7 +28,7 @@ export default function App() {
   }, [pathname]);
 
   return (
-    <div className="relative w-full min-h-screen bg-[#050505] text-white font-sans flex flex-col">
+    <div className="relative w-full min-h-screen bg-bg-canvas text-text-primary font-sans flex flex-col">
       
       <Navbar />
 
