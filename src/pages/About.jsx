@@ -1,6 +1,15 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+import shehrozImg from '../assets/shehroz.jpeg';
+import mubashirImg from '../assets/mubashir.png';
+import asimImg from '../assets/asim.png';
+import usmanImg from '../assets/usman.png';
+import yaseenImg from '../assets/yaseen.png';
+import fasihImg from '../assets/fasih.png';
+import waleedImg from '../assets/waleed.png';
+import attaImg from '../assets/atta.png';
+
 const TEAM = [
   {
     role: "Co-Founder & CTO",
@@ -8,7 +17,7 @@ const TEAM = [
     title: "Technical Director",
     exp: "3+ YEARS",
     skills: ["React", "Node.js", "Python", "Full Stack"],
-    img: "/src/assets/shehroz.jpeg",
+    img: shehrozImg,
     linkedin: "https://www.linkedin.com/in/chshehrozshafiq/"
   },
   {
@@ -17,7 +26,7 @@ const TEAM = [
     title: ".NET Engineer",
     exp: "6+ YEARS",
     skills: ["C#", ".NET", "Enterprise"],
-    img: "/src/assets/mubashir.png",
+    img: mubashirImg,
     linkedin: "https://www.linkedin.com/in/mubashirshafiq/"
   },
   {
@@ -26,7 +35,7 @@ const TEAM = [
     title: "Web Developer",
     exp: "3+ YEARS",
     skills: ["Frontend", "Backend", "Full Stack"],
-    img: "/src/assets/asim.png",
+    img: asimImg,
     linkedin: "https://www.linkedin.com/in/mian-asim-yaqoob-46580b334/"
   },
   {
@@ -35,7 +44,7 @@ const TEAM = [
     title: "Software Developer",
     exp: "3+ YEARS",
     skills: ["Web Dev", "Programming"],
-    img: "/src/assets/usman.png"
+    img: usmanImg
   },
   {
     role: "Engineer",
@@ -43,7 +52,7 @@ const TEAM = [
     title: "Full-Stack & Data Engineer",
     exp: "3+ YEARS",
     skills: [".NET", "React", "Data Analytics"],
-    img: "/src/assets/yaseen.png"
+    img: yaseenImg
   },
   {
     role: "Data Science",
@@ -51,7 +60,7 @@ const TEAM = [
     title: "ML Engineer",
     exp: "2+ YEARS",
     skills: ["PyTorch", "TensorFlow", "ML / AI"],
-    img: "/src/assets/fasih.png"
+    img: fasihImg
   },
   {
     role: "Security",
@@ -59,7 +68,7 @@ const TEAM = [
     title: "Cybersecurity Expert",
     exp: "3+ YEARS",
     skills: ["Pentesting", "Cyber Defense"],
-    img: "/src/assets/waleed.png"
+    img: waleedImg
   },
   {
     role: "QA",
@@ -67,7 +76,7 @@ const TEAM = [
     title: "QA Engineer & Tester",
     exp: "3+ YEARS",
     skills: ["QA", "Testing", "Bug Tracking"],
-    img: "/src/assets/atta.png"
+    img: attaImg
   }
 ];
 
