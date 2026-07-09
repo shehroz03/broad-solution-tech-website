@@ -9,8 +9,18 @@ import yaseenImg from '../assets/yaseen.png';
 import fasihImg from '../assets/fasih.png';
 import waleedImg from '../assets/waleed.png';
 import attaImg from '../assets/atta.png';
+import arbazImg from '../assets/arbaz.jpg';
 
 const TEAM = [
+  {
+    role: "Founder & CEO",
+    name: "Arbaz Nasir Virk",
+    title: "Founder & CEO",
+    exp: "8+ YEARS",
+    skills: ["Business Strategy", "Innovation", "Tech Architecture"],
+    img: arbazImg,
+    linkedin: "https://www.linkedin.com/in/arbaznasirvirk/"
+  },
   {
     role: "Co-Founder & CTO",
     name: "Shehroz Shafiq",
@@ -129,7 +139,8 @@ export default function About() {
               "top-[50%] right-[0%] md:right-[5%] w-[80px] h-[100px] md:w-[140px] md:h-[180px]",
               "bottom-[8%] right-[12%] md:right-[22%] w-[90px] h-[110px] md:w-[150px] md:h-[200px]",
               "top-[3%] left-[42%] md:left-[35%] w-[60px] h-[80px] md:w-[100px] md:h-[130px] opacity-60 hover:opacity-100",
-              "bottom-[3%] right-[42%] md:right-[35%] w-[70px] h-[90px] md:w-[110px] md:h-[150px] opacity-60 hover:opacity-100"
+              "bottom-[3%] right-[42%] md:right-[35%] w-[70px] h-[90px] md:w-[110px] md:h-[150px] opacity-60 hover:opacity-100",
+              "bottom-[3%] left-[42%] md:left-[35%] w-[70px] h-[90px] md:w-[110px] md:h-[150px] opacity-60 hover:opacity-100"
             ];
             const startX = idx % 2 === 0 ? -50 : 50;
             return (
