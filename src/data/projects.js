@@ -1,5 +1,30 @@
 export const ALL_PROJECTS = [
   {
+    id: "premium-textile",
+    title: "Premium Textile Portfolio",
+    category: "Web Platform",
+    desc: "A modern, high-end digital portfolio designed for a premium textile manufacturer to showcase their fabric collections, weaving techniques, and global reach through an immersive and highly visual user experience.",
+    features: [
+      "Immersive fabric galleries and lookbooks",
+      "High-performance image loading and smooth animations",
+      "Responsive design across mobile, tablet, and desktop",
+      "Interactive product catalogs and filtering",
+      "Premium UI/UX design with custom typography"
+    ],
+    tech: ["React", "Vite", "Tailwind CSS", "Framer Motion"],
+    images: [
+      "/assets/images/projects/luxry (1).png",
+      "/assets/images/projects/luxry (2).png",
+      "/assets/images/projects/luxry (3).png"
+    ],
+    challenge: "The client, a premium textile brand, needed a digital presence that reflected the tactile quality, luxury, and intricate details of their fabrics. Their previous website was slow, visually outdated, and failed to engage high-end fashion designers, B2B buyers, and global clients effectively.",
+    solution: "We engineered a blazing-fast, visually rich portfolio using React and Vite for the front-end architecture. By leveraging Tailwind CSS and Framer Motion, we implemented fluid micro-interactions and seamless page transitions that mimic the elegance and flow of premium textiles. We also optimized high-resolution image delivery to ensure fast load times without sacrificing visual quality.",
+    result: "The new portfolio increased average user engagement time by 45% and generated a 30% increase in inbound B2B inquiries within the first two months of launch. The seamless, high-performance experience successfully positioned the brand as a modern, forward-thinking leader in the luxury textile market.",
+    actions: [
+      { label: "GitHub Repo", link: "https://github.com/shehroz03/premium-textile-portfolio" }
+    ]
+  },
+  {
     id: "socialvibing",
     title: "SocialVibing",
     category: "Mobile Application",

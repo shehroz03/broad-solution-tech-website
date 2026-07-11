@@ -26,7 +26,7 @@ export default function Navbar() {
           initial={{ opacity: 0, scale: 0.8, filter: "blur(10px)" }}
           animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className={!isHomePage ? "bg-white px-3 py-2 rounded-[14px] shadow-[0_0_15px_rgba(255,255,255,0.1)]" : "px-2 py-1"}
+          className="px-2 py-1"
         >
           <div style={{ overflow: 'hidden', height: '36px', display: 'flex', alignItems: 'flex-start' }}>
             <img 
