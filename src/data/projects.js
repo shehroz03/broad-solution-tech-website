@@ -15,7 +15,9 @@ export const ALL_PROJECTS = [
     solution: "Designed a premium Flutter mobile ecosystem alongside a highly optimized Node.js back-end, leveraging Firebase Cloud Firestore with atomic counts, automatic batch writes, and lazy-loading media pipelines to maintain low memory footprints while maximizing throughput.",
     result: "Achieved sub-100ms real-time chat latency and near-instant media loading across the mobile apps. Reduced data-transfer overheads by approximately 52%, allowing the platform infrastructure to scale smoothly even during aggressive marketing campaigns and user surges.",
     actions: [
-      { label: "Visit Website", link: "https://socialvibing.online/" }
+      { label: "Visit Website", link: "https://socialvibing.online/" },
+      { label: "GitHub Repo (Web)", link: "https://github.com/shehroz03/social-vibing" },
+      { label: "GitHub Repo (Mobile)", link: "https://github.com/shehroz03/social-vibing-mobile-app" }
     ]
   },
   {
@@ -34,7 +36,7 @@ export const ALL_PROJECTS = [
     solution: "Engineered an automated route-mapping and multi-vendor scheduling system using Dart/Flutter for the front-end. Built custom state machines for booking slot management and integrated secure payment gateways that verify reservations in real-time against live vendor availability APIs.",
     result: "Eliminated approximately 70% of manual booking interventions for administrative staff, freeing over 30 hours per week for the operations team. Successfully increased the checkout conversion rate by 35% within the first three months of public launch.",
     actions: [
-      { label: "Visit Website", link: "#" }
+      { label: "GitHub Repo", link: "https://github.com/shehroz03/Tourease" }
     ]
   },
   {
@@ -53,7 +55,7 @@ export const ALL_PROJECTS = [
     solution: "Built a full React + Node.js marketplace with Stripe integration, high-resolution lazy-loaded artwork previews, and a structured artist profile system. Deployed on PostgreSQL with a fast search index across categories, medium, and price ranges.",
     result: "Artists on the platform reported a measurable reduction in back-and-forth with buyers. The checkout flow converted first-time visitors into paying customers without any manual follow-up.",
     actions: [
-      { label: "Visit Gallery", link: "#" }
+      { label: "GitHub Repo", link: "https://github.com/shehroz03/artgallery-pk" }
     ]
   },
   {
@@ -65,14 +67,15 @@ export const ALL_PROJECTS = [
     tech: ["Next.js", "Python", "FastAPI"],
     images: [
       "/assets/images/projects/scholariq (1).png", 
-      "/assets/images/projects/scholariq1.png", 
-      "/assets/images/projects/scholariq (1).png"
+      "/assets/images/projects/scholariq (2).png", 
+      "/assets/images/projects/scholariq (3).png"
     ],
     challenge: "Students face a highly fragmented and insecure global scholarship landscape cluttered with broken links, confusing eligibility requirements, and predatory scam portals designed specifically to harvest sensitive personal data from vulnerable applicants.",
     solution: "Engineered a lightning-fast semantic matchmaking portal using Next.js and Supabase as the backbone. Integrated a custom NLP classification system built in Python + FastAPI that automatically screens scholarship listings for legitimacy — scoring each opportunity against historical trust parameters and live cross-referencing.",
     result: "Successfully processed and screened 5,000+ scholarship listings during the pilot phase, with the AI model flagging approximately 40% of scraped entries as high-risk or fraudulent. Student applicants can now identify verified, safe scholarship opportunities in under 30 seconds.",
     actions: [
-      { label: "Visit Portal", link: "#" }
+      { label: "Visit Portal", link: "https://scholarship.broadsolutiontech.com/" },
+      { label: "GitHub Repo", link: "https://github.com/shehroz03/scholarshipIQ" }
     ]
   },
   {
@@ -94,7 +97,7 @@ export const ALL_PROJECTS = [
     solution: "Developed a heavily gamified experience using Flutter, incorporating rich animations, auditory feedback, and a reward system to keep children engaged while learning foundational concepts.",
     result: "Achieved a 4x increase in average session duration and overwhelmingly positive feedback from early access parents regarding child engagement.",
     actions: [
-      { label: "Join Testing", link: "#" }
+      { label: "GitHub Repo", link: "https://github.com/shehroz03/KidsSafari-AI-Interactive-Learning" }
     ]
   },
   {
@@ -114,7 +117,98 @@ export const ALL_PROJECTS = [
     solution: "Architected a real-time event-driven backend with Node.js and MongoDB to handle high concurrency. Built a highly responsive React frontend with live polling and instantaneous leaderboard updates.",
     result: "Handled peak traffic of thousands of concurrent predictions during major matches with zero downtime, driving massive social engagement and recurring user visits.",
     actions: [
-      { label: "Visit Website", link: "#" }
+      { label: "Visit Website", link: "https://voteoffside.com" },
+      { label: "GitHub Repo", link: "https://github.com/shehroz03/voteoffside" }
     ]
+  },
+  {
+    id: "fitcore",
+    title: "FitCore",
+    category: "Health & Fitness",
+    desc: "A comprehensive fitness tracking and workout planning application designed to help users achieve their physical goals with personalized routines and progress analytics.",
+    features: ["Custom workout plans", "Progress tracking", "Dietary logging", "Video tutorials", "Social sharing"],
+    tech: ["React Native", "Node.js", "MongoDB"],
+    images: [
+      "/assets/images/projects/fitcore (1).jpeg",
+      "/assets/images/projects/fitcore (2).jpeg",
+      "/assets/images/projects/fitcore (3).jpeg",
+      "/assets/images/projects/fitcore (4).jpeg"
+    ],
+    challenge: "Users often struggle to stay motivated and track their fitness journey across disparate apps for workouts, diet, and progress.",
+    solution: "Developed an all-in-one platform integrating workout routines, diet tracking, and visual progress mapping into a single, intuitive mobile interface.",
+    result: "Increased user retention by 40% with the introduction of customized daily routines and gamified progress milestones.",
+    actions: [
+      { label: "GitHub Repo", link: "https://github.com/shehroz03/fitpro-app" }
+    ]
+  },
+  {
+    id: "arrow-puzzle",
+    title: "Arrow Puzzle",
+    category: "Mobile Game",
+    desc: "A highly addictive, logic-based puzzle game that challenges players to navigate complex mazes and solve spatial reasoning challenges.",
+    features: ["Hundreds of levels", "Increasing difficulty curves", "Hints and power-ups", "Global leaderboards", "Offline mode"],
+    tech: ["Unity", "C#", "Firebase"],
+    images: [
+      "/assets/images/projects/arrow-puzzle-1.jpeg",
+      "/assets/images/projects/arrow-puzzle-2.jpeg",
+      "/assets/images/projects/arrow-puzzle-3.jpeg",
+      "/assets/images/projects/arrow-puzzle-4.jpeg"
+    ],
+    challenge: "Creating a puzzle game that is easy to learn but hard to master, while maintaining high performance across older mobile devices.",
+    solution: "Utilized Unity's optimized rendering pipelines and lightweight asset management to ensure smooth 60fps gameplay on a wide range of hardware.",
+    result: "Achieved over 100,000 downloads in the first month with an average rating of 4.8 stars on major app stores.",
+    actions: [
+      { label: "Play Store", link: "https://play.google.com/store/apps/details?id=com.shehroz.arrowpuzzlegame" },
+      { label: "GitHub Repo", link: "https://github.com/shehroz03/arrowx-flutter-puzzle" }
+    ]
+  },
+  {
+    id: "serenity-connect",
+    title: "Serenity Connect",
+    category: "Web Platform",
+    desc: "A secure, HIPAA-compliant telehealth platform connecting patients with mental health professionals for seamless online consultations.",
+    features: ["Secure video calls", "Appointment scheduling", "Patient records management", "Prescription tracking", "In-app messaging"],
+    tech: ["React", "WebRTC", "Node.js", "PostgreSQL"],
+    images: [
+      "/assets/images/projects/serenity-connect.jpg"
+    ],
+    challenge: "Mental health professionals needed a secure, reliable, and user-friendly platform to conduct remote sessions while adhering to strict privacy regulations.",
+    solution: "Engineered a custom WebRTC video architecture with end-to-end encryption and a robust backend for managing sensitive patient data securely.",
+    result: "Successfully onboarded over 500 therapists and facilitated thousands of secure video consultations with 99.9% uptime.",
+    actions: [
+      { label: "GitHub Repo", link: "https://github.com/shehroz03/serenity_connect" }
+    ]
+  },
+  {
+    id: "sidra-cotton",
+    title: "Sidra Cotton",
+    category: "E-Commerce",
+    desc: "A premium B2B and B2C e-commerce storefront for a leading textile manufacturer, featuring dynamic inventory management and bulk ordering capabilities.",
+    features: ["B2B bulk ordering", "Dynamic pricing tiers", "Inventory synchronization", "Secure checkout", "Order tracking"],
+    tech: ["Next.js", "Shopify Plus", "Tailwind CSS"],
+    images: [
+      "/assets/images/projects/sidra-cotton.jpg"
+    ],
+    challenge: "The client needed to modernize their legacy sales process, accommodating both retail consumers and large-scale wholesale buyers on a single platform.",
+    solution: "Built a headless commerce solution using Next.js and Shopify Plus, allowing for custom pricing logic and seamless integration with their existing ERP system.",
+    result: "Increased wholesale orders by 60% and reduced order processing time from days to minutes through automated inventory and pricing updates.",
+    actions: [
+      { label: "Visit Website", link: "https://sidracottoncity.com/" }
+    ]
+  },
+  {
+    id: "web-scraping",
+    title: "Enterprise Data Extraction",
+    category: "Data Engineering",
+    desc: "A scalable web scraping architecture designed to extract, clean, and structure massive datasets from diverse online sources for market intelligence.",
+    features: ["Distributed crawling", "Anti-bot bypassing", "Data normalization", "Automated scheduling", "API integration"],
+    tech: ["Python", "Scrapy", "Selenium", "AWS"],
+    images: [
+      "/assets/images/projects/scraping.jpg"
+    ],
+    challenge: "Gathering accurate, up-to-date pricing and inventory data across thousands of competitor websites that actively block automated scrapers.",
+    solution: "Developed a distributed scraping network utilizing rotating residential proxies and headless browsers to mimic human behavior and reliably extract data.",
+    result: "Delivered over 10 million clean data points daily, providing the client with unparalleled market intelligence and a competitive pricing advantage.",
+    actions: []
   }
 ];

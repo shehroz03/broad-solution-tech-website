@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Mail, Phone } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function FooterSection() {
   return (
@@ -25,12 +26,12 @@ export default function FooterSection() {
           <p className="text-[18px] md:text-[24px] text-white/50 max-w-[500px]">
             Ready to scale your digital presence? We are currently taking on new projects for Q3.
           </p>
-          <button className="h-[64px] px-[40px] bg-white text-black font-bold text-[18px] rounded-full transition-all hover:bg-brand-accent hover:text-white hover:scale-105 flex items-center gap-4 group">
+          <Link to="/contact" className="h-[64px] px-[40px] bg-white text-black font-bold text-[18px] rounded-full transition-all hover:bg-brand-accent hover:text-white hover:scale-105 flex items-center gap-4 group inline-flex">
             Start a Project
             <div className="w-8 h-8 rounded-full bg-black text-white flex items-center justify-center group-hover:bg-white group-hover:text-brand-accent transition-colors">
               <ArrowRight className="w-4 h-4" />
             </div>
-          </button>
+          </Link>
         </div>
       </div>
 
@@ -63,13 +64,18 @@ export default function FooterSection() {
         <div className="col-span-1 md:col-span-3">
           <h4 className="text-[14px] font-bold uppercase tracking-widest text-white/30 mb-8">Navigation</h4>
           <ul className="flex flex-col gap-4">
-            {['Home', 'Technology', 'Our Work', 'Reviews', 'Team'].map(link => (
-              <li key={link}>
-                <a href={`#${link.toLowerCase().replace(' ', '-')}`} className="text-white/70 hover:text-white transition-colors text-[16px] font-medium">
-                  {link}
-                </a>
-              </li>
-            ))}
+            <li>
+              <Link to="/" className="text-white/70 hover:text-white transition-colors text-[16px] font-medium">Home</Link>
+            </li>
+            <li>
+              <Link to="/about" className="text-white/70 hover:text-white transition-colors text-[16px] font-medium">About Us</Link>
+            </li>
+            <li>
+              <Link to="/our-work" className="text-white/70 hover:text-white transition-colors text-[16px] font-medium">Our Work</Link>
+            </li>
+            <li>
+              <Link to="/contact" className="text-white/70 hover:text-white transition-colors text-[16px] font-medium">Contact</Link>
+            </li>
           </ul>
         </div>
 

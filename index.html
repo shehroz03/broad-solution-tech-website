@@ -2,51 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Broad Solution Tech | Engineering Digital Products</title>
-    <!-- We use Inter Tight as preferred in the prompt -->
+    <meta name="description" content="Broad Solution Tech delivers high-end web, mobile, and AI solutions for startups and growing businesses." />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   </head>
   <body>
-    <!-- Preloader / Splash Screen -->
-    <div id="splash-screen" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: #ffffff; display: flex; justify-content: center; align-items: center; z-index: 99999; transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s cubic-bezier(0.4, 0, 0.2, 1);">
-      <img src="/logo.png" alt="Broad Solution Tech Logo" id="splash-logo" style="width: 200px; animation: pulseLogo 2s ease-in-out infinite alternate; filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.1));">
-    </div>
-    
-    <style>
-      @keyframes pulseLogo {
-        0% { transform: scale(0.95); opacity: 0.9; }
-        100% { transform: scale(1.05); opacity: 1; }
-      }
-      body.splash-active {
-        overflow: hidden;
-      }
-    </style>
-
-    <script>
-      (function() {
-        const splash = document.getElementById('splash-screen');
-        if (!sessionStorage.getItem('splash_shown')) {
-          document.body.classList.add('splash-active');
-          window.addEventListener('load', () => {
-            setTimeout(() => {
-              splash.style.opacity = '0';
-              splash.style.visibility = 'hidden';
-              document.body.classList.remove('splash-active');
-              sessionStorage.setItem('splash_shown', 'true');
-              setTimeout(() => splash.remove(), 800);
-            }, 2500); // 2.5 seconds duration
-          });
-        } else {
-          splash.style.display = 'none';
-          splash.remove();
-        }
-      })();
-    </script>
-
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

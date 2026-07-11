@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
+import logoSrc from '/logu.png';
 
 export default function Navbar() {
   const location = useLocation();
@@ -19,10 +20,25 @@ export default function Navbar() {
       transition={{ duration: 0.5 }}
       className="absolute top-0 left-0 w-full h-[88px] flex items-center justify-between z-50 px-6 md:px-12 lg:px-[80px]"
     >
-      {/* Left: Wordmark */}
-      <Link to="/" className="flex items-center gap-2 group">
-        <div className="w-3 h-3 bg-brand-accent transition-transform group-hover:scale-110"></div>
-        <span className={`font-bold text-xl tracking-tight ${textColor}`}>BST</span>
+      {/* Left: Logo */}
+      <Link to="/" className="flex items-center group">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8, filter: "blur(10px)" }}
+          animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className={!isHomePage ? "bg-white px-3 py-2 rounded-[14px] shadow-[0_0_15px_rgba(255,255,255,0.1)]" : "px-2 py-1"}
+        >
+          <div style={{ overflow: 'hidden', height: '36px', display: 'flex', alignItems: 'flex-start' }}>
+            <img 
+              src={logoSrc} 
+              alt="BST Logo" 
+              className="h-[46px] w-auto object-contain transition-all duration-300"
+              style={{
+                clipPath: 'inset(0% 0% 22% 0%)'
+              }}
+            />
+          </div>
+        </motion.div>
       </Link>
 
       {/* Center Navigation */}
