@@ -1,17 +1,17 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link, useLocation } from 'react-router-dom';
+import { Sun, Moon } from 'lucide-react';
 import logoSrc from '/logu.png';
 
 export default function Navbar() {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
   
-  // Decide colors based on route
-  const textColor = isHomePage ? "text-text-primary" : "text-white";
-  const mutedTextColor = isHomePage ? "text-text-secondary" : "text-white/60";
-  const hoverTextColor = isHomePage ? "hover:text-brand-accent" : "hover:text-white";
-  const btnBg = isHomePage ? "bg-[#101214] text-white" : "bg-white text-black";
+  // Consistent colors based on CSS variables instead of hardcoded white
+  const mutedTextColor = "text-text-secondary";
+  const hoverTextColor = "hover:text-brand-accent";
+  const btnBg = "bg-brand-soft text-brand-accent border border-brand-accent/20";
 
   return (
     <motion.header 
@@ -45,6 +45,7 @@ export default function Navbar() {
       <nav className={`hidden xl:flex items-center gap-8 text-[15px] font-medium ${mutedTextColor}`}>
         <Link to="/" className={`${hoverTextColor} transition-colors`}>Home</Link>
         <Link to="/about" className={`${hoverTextColor} transition-colors`}>About</Link>
+        <Link to="/services" className={`${hoverTextColor} transition-colors`}>Services</Link>
         <Link to="/our-work" className={`${hoverTextColor} transition-colors`}>Our Work</Link>
       </nav>
 

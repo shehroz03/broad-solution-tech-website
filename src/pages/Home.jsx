@@ -7,6 +7,8 @@ import ParticleMorphSection from '../components/ParticleMorphSection';
 import DualOfferingSection from '../components/DualOfferingSection';
 import ProcessSection from '../components/ProcessSection';
 import ProjectsSection from '../components/ProjectsSection';
+import TestimonialsSection from '../components/TestimonialsSection';
+import FAQSection from '../components/FAQSection';
 
 const NODES = [
   // --- TOP LEFT QUADRANT ---
@@ -342,6 +344,8 @@ export default function Home({ mouseX, mouseY }) {
         <DualOfferingSection />
         <ProcessSection />
         <ProjectsSection />
+        <TestimonialsSection />
+        <FAQSection />
       </div>
 
     </div>
