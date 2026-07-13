@@ -29,7 +29,7 @@ export default function FAQSection() {
   };
 
   return (
-    <section className="py-24 px-6 md:px-12 lg:px-[80px] bg-bg-canvas dark:bg-[#101214]">
+    <section className="py-24 px-6 md:px-12 lg:px-[80px] bg-bg-canvas">
       <div className="max-w-[800px] mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-[800] tracking-tight mb-4">
@@ -44,7 +44,7 @@ export default function FAQSection() {
           {FAQS.map((faq, index) => (
             <div 
               key={index} 
-              className="border border-border-subtle bg-white dark:bg-[#1A1C20] rounded-xl overflow-hidden"
+              className="border border-border-subtle bg-white rounded-xl overflow-hidden"
             >
               <button
                 onClick={() => toggleFAQ(index)}

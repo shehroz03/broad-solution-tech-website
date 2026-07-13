@@ -25,7 +25,7 @@ const TESTIMONIALS = [
 
 export default function TestimonialsSection() {
   return (
-    <section className="py-24 px-6 md:px-12 lg:px-[80px] bg-white dark:bg-[#1A1C20] border-t border-border-subtle">
+    <section className="py-24 px-6 md:px-12 lg:px-[80px] bg-white border-t border-border-subtle">
       <div className="max-w-[1440px] mx-auto">
         <div className="text-center mb-16">
           <motion.div
@@ -51,7 +51,7 @@ export default function TestimonialsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.15 }}
-              className="p-8 rounded-2xl bg-bg-canvas dark:bg-[#101214] border border-border-subtle hover:border-brand-accent transition-colors duration-300"
+              className="p-8 rounded-2xl bg-bg-canvas border border-border-subtle hover:border-brand-accent transition-colors duration-300"
             >
               <div className="flex gap-1 mb-6 text-brand-accent">
                 {[...Array(5)].map((_, i) => (
